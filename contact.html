@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optimmystic | Contact Us</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+  <style>
+    @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css');
+
+
+       .about-hero {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                  url('assets/images/woman-getting-eye-exam-ophthalmologist-office.jpg') center/cover no-repeat;
+      color: #fff;
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    html,
+    body {
+      height: 100%;
+      min-height: 100vh;
+    }
+
+    body {
+      background: #10131a;
+      color: #fff;
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      padding-top: 76px;
+    }
+
+    .navbar {
+      background: rgba(24, 28, 36, 0.95) !important;
+      box-shadow: 0 2px 16px #0005;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1030;
+      transition: background 0.3s;
+    }
+
+    .navbar-brand .bi {
+      color: #0dcaf0 !important;
+    }
+
+    .navbar-nav .nav-link {
+      position: relative;
+    }
+
+    .navbar-nav .nav-link::after {
+      content: '';
+      display: block;
+      height: 3px;
+      width: 0;
+      background: linear-gradient(90deg, #0dcaf0 0%, #6f42c1 100%);
+      border-radius: 2px;
+      margin: 0 auto;
+      transition: width 0.3s cubic-bezier(.4, 2, .6, 1);
+    }
+
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link.active::after {
+      width: 80%;
+    }
+
+    /* Mobile: make the active underline full-width and left-aligned for collapsed menu items */
+    @media (max-width: 767.98px) {
+      .navbar-nav .nav-link::after {
+        margin: 0; /* remove centering */
+        width: 0; /* default hidden */
+      }
+      .navbar-nav .nav-link:hover::after,
+      .navbar-nav .nav-link.active::after,
+      .navbar-nav .nav-link[aria-current='page']::after {
+        width: 100%;
+        margin-left: 0;
+        border-radius: 2px;
+      }
+    }
+
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:focus,
+    .navbar-nav .nav-link[aria-current='page'] {
+      color: #0dcaf0 !important;
+      font-weight: 700;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #0dcaf0 !important;
+      text-shadow: 0 2px 8px #0dcaf055;
+    }
+
+    .btn-primary,
+    .btn-outline-primary {
+      border-radius: 2rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover,
+    .btn-outline-primary:hover,
+    .btn-dark:hover {
+      box-shadow: 0 4px 24px #0dcaf088;
+      transform: translateY(-2px) scale(1.03);
+    }
+
+
+
+.hero-section {
+  padding-top: 76px;
+}
+
+      .cta-glass-section {
+        background: linear-gradient(90deg, #0dcaf0 0%, #10131a 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-glass-card {
+        background: rgba(24, 28, 36, 0.85);
+        border-radius: 2rem;
+        box-shadow: 0 8px 32px #0dcaf055, 0 0 0 6px #0dcaf033;
+        border: 2.5px solid transparent;
+        background-clip: padding-box;
+        backdrop-filter: blur(12px) saturate(140%);
+        padding: 2rem;
+        color: white;
+        text-align: center;
+        animation: float-cta 3.5s ease-in-out infinite;
+      }
+
+      .cta-icon {
+        font-size: 3.5rem;
+        color: #0dcaf0;
+        filter: drop-shadow(0 0 16px #0dcaf0cc);
+        margin-bottom: 0.5rem;
+        animation: glow-cta 2.5s alternate infinite;
+      }
+
+      @keyframes float-cta {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+
+      @keyframes glow-cta {
+        0% {
+          filter: drop-shadow(0 0 8px #0dcaf0cc);
+        }
+        100% {
+          filter: drop-shadow(0 0 32px #0dcaf0cc);
+        }
+      }
+
+      .contact-card {
+        background-color: #0b0e11;
+        border-radius: 1.5rem;
+        border: 1.5px solid #0dcaf033;
+        padding: 2rem;
+        text-align: center;
+        color: #ffffff;
+        box-shadow: 0 0 35px rgba(13, 202, 240, 0.4);
+        transition: transform 0.7s ease, box-shadow 0.3s ease;
+      }
+
+      .contact-card:hover {
+        box-shadow: 0 8px 32px #0dcaf055, 0 0 0 4px #0dcaf033;
+        transform: translateY(-4px) scale(1.04);
+      }
+
+      .contact-card i {
+        font-size: 2rem;
+        color: #0dcaf0;
+        background: rgba(13, 202, 240, 0.15);
+        padding: 15px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      .contact-card h5 {
+        font-weight: 700;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .contact-card p {
+        font-size: 0.9rem;
+        color: #b0b3b8;
+        margin-bottom: 0;
+      }
+
+      .btn-cta-glass-main {
+        background: linear-gradient(90deg, #0dcaf0 0%, #6f42c1 100%);
+        color: #fff !important;
+        border: none;
+        border-radius: 2rem;
+        font-weight: 700;
+        font-size: 1.25rem;
+        box-shadow: 0 4px 24px #0dcaf088;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s,
+          transform 0.18s;
+      }
+
+      .btn-cta-glass-main:hover,
+      .btn-cta-glass-main:focus {
+        background: linear-gradient(90deg, #6f42c1 0%, #0dcaf0 100%);
+        color: #fff !important;
+        box-shadow: 0 8px 32px #6f42c188;
+        transform: scale(1.06);
+      }
+
+      @media (max-width: 600px) {
+        .cta-glass-card {
+          padding: 2rem 1rem;
+        }
+
+        .cta-icon {
+          font-size: 2.2rem;
+        }
+
+        .btn-cta-glass-main {
+          font-size: 1rem;
+          padding: 0.7rem 2rem;
+        }
+      }
+
+      form {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 0 25px rgba(13, 202, 240, 0.2);
+        backdrop-filter: blur(10px);
+      }
+      input::placeholder{
+        color: #fff !important;
+      }
+      .form-control,
+      .form-select {
+        background-color: #111;
+        color: #fff !important;
+        border: 1px solid #333;
+        border-radius: 0.75rem;
+        transition: all 0.3s ease;
+        box-shadow: none;
+      }
+
+      .form-control:focus,
+      .form-select:focus {
+        border-color: #0dcaf0;
+        box-shadow: 0 0 12px #0dcaf088;
+        background-color: #0b0e11;
+        color: #fff !important;
+      }
+
+      textarea.form-control {
+        resize: none;
+      }
+
+      .btn-cta-glass-main:hover {
+        box-shadow: 0 0 30px #0dcaf099;
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 576px) {
+        form {
+          padding: 1.5rem 1rem;
+        }
+
+        .btn-cta-glass-main {
+          padding: 0.8rem 0.8rem;
+          font-size: 1rem;
+        }
+      }
+
+
+
+    /* From Uiverse.io by vikramsinghnegi */
+    .center-body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      background: #262626;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+    }
+
+    .loader-circle-9 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px;
+      height: 70px;
+      background: transparent;
+      border: 3px solid #3c3c3c;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 70px;
+      font-family: sans-serif;
+      font-size: 12px;
+      color: #00eaff;
+      text-transform: uppercase;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .loader-circle-9:before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      width: 100%;
+      height: 100%;
+      border: 3px solid transparent;
+      border-top: 3px solid #00eaff;
+      border-right: 3px solid #00eaff;
+      border-radius: 50%;
+      animation: animateC 2s linear infinite;
+    }
+
+    .loader-circle-9 span {
+      display: block;
+      position: absolute;
+      top: calc(50% - 2px);
+      left: 50%;
+      width: 50%;
+      height: 4px;
+      background: transparent;
+      transform-origin: left;
+      animation: animate 2s linear infinite;
+    }
+
+    .loader-circle-9 span:before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #00eaff;
+      top: -6px;
+      right: -8px;
+      box-shadow: 0 0 20px #00eaff;
+    }
+
+    @keyframes animateC {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes animate {
+      0% {
+        transform: rotate(45deg);
+      }
+
+      100% {
+        transform: rotate(405deg);
+      }
+    }
+
+    /* Theme toggle and support button styles */
+    #supportBtn {
+      border: 1.5px solid #0dcaf0;
+      background: rgba(13, 202, 240, 0.10);
+      color: #0dcaf0;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+
+    #supportBtn:hover {
+      background: #0dcaf0;
+      color: #fff;
+      box-shadow: 0 4px 16px #0dcaf088;
+    }
+
+    .btn-login-navbar {
+      background: linear-gradient(90deg, #0dcaf0 0%, #6f42c1 100%);
+      color: #fff !important;
+      border: none;
+      border-radius: 2rem;
+      font-weight: 700;
+      box-shadow: 0 4px 24px #0dcaf088;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+    }
+
+    .btn-login-navbar:hover,
+    .btn-login-navbar:focus {
+      background: linear-gradient(90deg, #6f42c1 0%, #0dcaf0 100%);
+      color: #fff !important;
+      box-shadow: 0 8px 32px #6f42c188;
+      transform: scale(1.06);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+      footer {
+      background: #181c24;
+      color: #aaa;
+    }
+
+    a {
+      color: #0dcaf0;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- From Uiverse.io by vikramsinghnegi -->
+  <div class="center-body" id="pageLoader">
+    <div class="loader-circle-9">
+      Loading
+      <span></span>
+    </div>
+  </div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <i class="bi bi-eye fs-2 me-2"></i>
+        <span class="fw-bold">Optimmystic</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="eye-test.html">Eye Test</a></li>
+          <li class="nav-item"><a class="nav-link" href="test-result.html">Test Results</a></li>
+          <li class="nav-item"><a class="nav-link" href="product.html">Our Product</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="contact.html">Contact Us</a></li>
+        </ul>
+        <div class="d-flex align-items-center ms-lg-3 gap-2">
+          <!-- Support Icon Button -->
+          <button id="supportBtn" class="btn btn-outline-info btn-sm rounded-circle" title="Support / Help"
+            style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;">
+            <i class="bi bi-question-circle-fill"></i>
+          </button>
+          <!-- Modern Login Button -->
+          <a href="login.html" class="btn btn-glass-main btn-login-navbar d-flex align-items-center gap-2 px-4 py-2"
+            style="font-weight:700;font-size:1.08rem;">
+            <i class="bi bi-box-arrow-in-right fs-5"></i>
+            <span>Login</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
+    <!-- Hero  -->
+<!-- <section
+  class="hero-section py-5 text-center bg-dar text-white"
+  style="background: url('assets/images/online-medical-help-concept-enthusiastic-young-woman-doctor-face-mask-showing-okay-sign-mobil.jpg') center/cover no-repeat"
+>
+  <div class="container py-200 bg-dark bg-opacity-20 rounded">
+    <h1 class="display-4 fw-bold">Contact Us</h1>
+    <p class="lead">Book an eye test or ask us anything.</p>
+  </div>
+</section> -->
+
+
+  <section class="about-hero">
+    <div class="container">
+      <h1 class="fw-bold display-4">Contact Us</h1>
+    <p class="lead">Book an eye test or ask us anything.</p>
+    </div>
+  </section>
+
+
+
+    <!-- Contact Info -->
+    <section class="py-5 bg-black text-light">
+      <div class="container">
+        <div class="row g-4 text-center">
+          <div class="col-md-3">
+            <div class="p-4 contact-card">
+              <i class="bi bi-geo-alt-fill fs-2 text-info"></i>
+              <h5 class="mt-3">Visit Us</h5>
+              <p>123 Vision Lane, Mumbai, India</p>
+              <br />
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="p-4 contact-card">
+              <i class="bi bi-telephone-fill fs-2 text-info"></i>
+              <h5 class="mt-3">Call Us</h5>
+              <p>+91 1234567890</p>
+              <br />
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="p-4 contact-card">
+              <i class="bi bi-envelope-fill fs-2 text-info"></i>
+              <h5 class="mt-3">Email</h5>
+              <p>info@optimmystic.com</p>
+              <br />
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="p-4 contact-card">
+              <i class="bi bi-clock-fill fs-2 text-info"></i>
+              <h5 class="mt-3">Hours</h5>
+              <p>Mon–Sat: 10AM–7PM<br />Sun: Closed</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location -->
+<section class="py-5 cta-glass-section text-white">
+  <div class="container">
+    <h2 class="text-center mb-4">Our Location</h2>
+    <div class="row g-4 align-items-stretch">
+      <!--Map -->
+      <div class="col-md-6">
+        <div class="cta-glass-card h-100">
+          <i class="bi bi-geo-alt-fill cta-icon"></i>
+          <h5 class="mt-3">Visit Us</h5>
+          <p>123 Vision Lane, Mumbai, India</p>
+          <iframe
+            src="https://www.google.com/maps/embed?..."
+            style="border: 0; border-radius: 1rem; margin-top: 1rem"
+            width="100%"
+            height="200"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+
+      <!-- Text Info -->
+      <div class="col-md-6">
+        <div class="cta-glass-card h-100">
+          <i class="bi bi-info-circle-fill cta-icon"></i>
+          <br>
+          <br>
+          <h5>Getting Here</h5>
+          <ul class="list-unstyled mt-3">
+            <li>
+              📍 <strong>Nearest Metro Station:</strong> Vision Plaza (Line 3) — Exit Gate 2, 5-minute walk to our center.
+            </li>
+            <br>
+            <li>
+              🚌 <strong>Bus Stop:</strong> Optic Circle — Bus routes 22, 45A, and 310 stop right outside.
+            </li>
+            <br>
+            <li>
+              🚗 <strong>By Car:</strong> Located on Vision Lane, near the HealthCity Mall. Paid parking is available at the mall or adjacent street parking zones.
+            </li>
+            <br>
+            <li>
+              🚶‍♂️ <strong>Landmark:</strong> We’re next to the ClearView Eye Hospital and above Blink Café.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Contact Form -->
+    <section class="py-5 bg-black text-white">
+      <div class="container">
+        <h2 class="text-center mb-4">Send Us a Message</h2>
+        <form class="mx-auto" style="max-width: 600px">
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Your Name"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Your Email"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Phone Number"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <select class="form-select" required>
+              <option selected disabled>Select Subject</option>
+              <option value="test">Eye Test Booking</option>
+              <option value="report">Test Report</option>
+              <option value="general">General Inquiry</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <textarea 
+              class="form-control"
+              rows="4"
+              placeholder="Your Message"
+            ></textarea>
+          </div>
+          <a
+            href="eye-test.html"
+            class="btn btn-cta-glass-main btn-lg px-5 py-3"
+            >Send Message<i class="bi bi-arrow-right ms-2"></i
+          ></a>
+        </form>
+      </div>
+    </section>
+
+
+
+
+    <!-- Footer -->
+  <footer class="py-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h5>Optimmystic</h5>
+          <p class="mb-0">&copy; 2025 Optimmystic. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-md-end mt-3 mt-md-0">
+          <a href="contact.html" class="text-decoration-none me-3">Contact</a>
+          <a href="#" class="text-decoration-none me-3">Privacy Policy</a>
+          <a href="#" class="text-decoration-none">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("pageLoader");
+      if (loader) {
+        loader.style.opacity = "0";
+        setTimeout(() => {
+          loader.style.display = "none";
+        }, 400);
+      }
+    });
+
+    document.getElementById("supportBtn")?.addEventListener("click", () => {
+      alert("For help, email support@optimmystic.com or use the contact form.");
+    });
+
+  // Hide loader when page is fully loaded
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      var loader = document.getElementById('pageLoader');
+      if (loader) loader.style.opacity = '0';
+      setTimeout(function () {
+        if (loader) loader.style.display = 'none';
+      }, 400);
+    }, 400); // slight delay for smoothness
+  });
+
+  // Support button logic
+  const supportBtn = document.getElementById('supportBtn');
+  if (supportBtn) {
+    supportBtn.addEventListener('click', function () {
+      alert('For support, please email us at support@optimmystic.com or use the contact page.');
+    });
+  }
+</script>
+
+</html>

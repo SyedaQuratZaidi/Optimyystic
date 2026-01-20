@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optimmystic | Home</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+  <style>
+    @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css');
+
+    html,
+    body {
+      height: 100%;
+      min-height: 100vh;
+    }
+
+    body {
+      background: #10131a;
+      color: #fff;
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      padding-top: 76px;
+    }
+
+    /* Remove unwanted horizontal scroll on mobile/tab */
+    html, body {
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      background: rgba(24, 28, 36, 0.95) !important;
+      box-shadow: 0 2px 16px #0005;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1030;
+      transition: background 0.3s;
+    }
+
+    .navbar-brand .bi {
+      color: #0dcaf0 !important;
+    }
+
+    .btn-primary,
+    .btn-outline-primary {
+      border-radius: 2rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover,
+    .btn-outline-primary:hover,
+    .btn-dark:hover {
+      box-shadow: 0 4px 24px #0dcaf088;
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    .hero-section {
+      background: linear-gradient(120deg, #10131a 60%, #0dcaf0 100%);
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.18;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-img {
+      max-width: 100%;
+      border-radius: 2rem;
+      box-shadow: 0 0 48px #0dcaf088;
+      border: 4px solid #0dcaf0;
+    }
+
+    .glass {
+      background: rgba(24, 28, 36, 0.85);
+      border-radius: 1.5rem;
+      box-shadow: 0 0 32px #0008;
+      backdrop-filter: blur(8px);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .glass:hover {
+      box-shadow: 0 8px 32px #0dcaf055;
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #0dcaf0;
+    }
+
+    .feature-img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      border: 2px solid #0dcaf0;
+    }
+
+    .card {
+      border-radius: 1.25rem;
+      background: rgba(24, 28, 36, 0.95);
+      border: none;
+      color: #fff;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .card .bi {
+      color: #0dcaf0;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 32px #0dcaf055;
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    .how-step {
+      font-size: 2.5rem;
+      color: #0dcaf0;
+      font-weight: bold;
+    }
+
+    .how-img {
+      width: 100%;
+      max-width: 120px;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 16px #0dcaf055;
+      border: 2px solid #0dcaf0;
+    }
+
+    .testimonial-card {
+      background: rgba(13, 202, 240, 0.08);
+      border-radius: 1.25rem;
+      border: none;
+      color: #fff;
+    }
+
+    .modal-content.bg-dark {
+      background: #232526 !important;
+    }
+
+    .text-secondary {
+      color: #bfbfc4 !important;
+    }
+
+    .form-control,
+    .form-control:focus {
+      background: #232526;
+      color: #fff;
+      border: none;
+    }
+
+    .toggle-link {
+      cursor: pointer;
+      color: #0dcaf0;
+    }
+
+    footer {
+      background: #181c24;
+      color: #aaa;
+    }
+
+    a {
+      color: #0dcaf0;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: #fff;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      letter-spacing: 0.5px;
+    }
+
+    .fw-bold {
+      font-weight: 700 !important;
+    }
+
+    .lead {
+      font-size: 1.25rem;
+    }
+
+    @media (max-width: 991.98px) {
+      .hero-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-img {
+        margin-top: 2rem;
+      }
+    }
+
+    .navbar-nav .nav-link {
+      position: relative;
+    }
+
+    .navbar-nav .nav-link::after {
+      content: '';
+      display: block;
+      height: 3px;
+      width: 0;
+      background: linear-gradient(90deg, #0dcaf0 0%, #6f42c1 100%);
+      border-radius: 2px;
+      margin: 0 auto;
+      transition: width 0.3s cubic-bezier(.4, 2, .6, 1);
+    }
+
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link.active::after {
+      width: 80%;
+    }
+
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:focus,
+    .navbar-nav .nav-link[aria-current='page'] {
+      color: #0dcaf0 !important;
+      font-weight: 700;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #0dcaf0 !important;
+      text-shadow: 0 2px 8px #0dcaf055;
+    }
+
+    /* Mobile: make the active underline full-width and left-aligned for collapsed menu items */
+    @media (max-width: 767.98px) {
+      .navbar-nav .nav-link::after {
+        margin: 0; /* remove centering */
+        width: 0; /* default hidden */
+      }
+      .navbar-nav .nav-link:hover::after,
+      .navbar-nav .nav-link.active::after,
+      .navbar-nav .nav-link[aria-current='page']::after {
+        width: 100%;
+        margin-left: 0;
+        border-radius: 2px;
+      }
+    }
+
+    /* From Uiverse.io by reglobby */
+    .user-profile {
+      width: 131px;
+      height: 51px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      background: linear-gradient(to bottom right,
+          #2e8eff 0%,
+          rgba(46, 142, 255, 0) 30%);
+      background-color: rgba(46, 142, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .user-profile:hover,
+    .user-profile:focus {
+      background-color: rgba(46, 142, 255, 0.7);
+      box-shadow: 0 0 10px rgba(46, 142, 255, 0.5);
+      outline: none;
+    }
+
+    .user-profile-inner {
+      width: 127px;
+      height: 47px;
+      border-radius: 13px;
+      background-color: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .user-profile-inner svg {
+      width: 27px;
+      height: 27px;
+      fill: #fff;
+    }
+
+    /* From Uiverse.io by Ratinax */
+    .loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100vh;
+      background: #10131a;
+      z-index: 2000;
+      cursor: not-allowed;
+      transition: opacity 0.5s;
+    }
+
+    .loader.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .central {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 10em;
+      height: 10em;
+      border-radius: 50%;
+      box-shadow: 0.5em 1em 1em blueviolet,
+        -0.5em 0.5em 1em blue,
+        0.5em -0.5em 1em purple,
+        -0.5em -0.5em 1em cyan;
+    }
+
+    .external-shadow {
+      width: 10em;
+      height: 10em;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      box-shadow: 0.5em 0.5em 3em blueviolet,
+        -0.5em 0.5em 3em blue,
+        0.5em -0.5em 3em purple,
+        -0.5em -0.5em 3em cyan;
+      z-index: 999;
+      animation: rotate 3s linear infinite;
+      background-color: #212121;
+    }
+
+    .intern {
+      position: absolute;
+      color: white;
+      z-index: 9999;
+    }
+
+    .intern::before {
+      content: "100%";
+      animation: percent 2s ease-in-out infinite;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      50% {
+        transform: rotate(180deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes percent {
+      0% {
+        content: '0%';
+      }
+
+      25% {
+        content: '25%';
+      }
+
+      33% {
+        content: '33%';
+      }
+
+      42% {
+        content: '42%';
+      }
+
+      51% {
+        content: '51%';
+      }
+
+      67% {
+        content: '67%';
+      }
+
+      74% {
+        content: '74%';
+      }
+
+      75% {
+        content: '75%';
+      }
+
+      86% {
+        content: '86%';
+      }
+
+      95% {
+        content: '95%';
+      }
+
+      98% {
+        content: '98%';
+      }
+
+      99% {
+        content: '99%';
+      }
+    }
+
+    /* Animated scroll down arrow */
+    .scroll-down-arrow {
+      position: absolute;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%);
+      z-index: 3;
+      cursor: pointer;
+      animation: bounce-arrow 1.5s infinite;
+      font-size: 2.5rem;
+      color: #0dcaf0;
+      opacity: 0.85;
+      transition: color 0.2s;
+    }
+
+    .scroll-down-arrow:hover {
+      color: #fff;
+      opacity: 1;
+    }
+
+    @keyframes bounce-arrow {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(16px);
+      }
+    }
+
+    /* Floating Chat/Help Button */
+    .chat-float-btn {
+      position: fixed;
+      right: 32px;
+      bottom: 32px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0dcaf0 60%, #6f42c1 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 24px #0dcaf088;
+      z-index: 3000;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+
+    .chat-float-btn:hover {
+      background: linear-gradient(135deg, #6f42c1 60%, #0dcaf0 100%);
+      box-shadow: 0 8px 32px #6f42c188;
+      transform: scale(1.08) translateY(-4px);
+    }
+
+    @media (max-width: 600px) {
+      .chat-float-btn {
+        right: 16px;
+        bottom: 16px;
+        width: 48px;
+        height: 48px;
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Animated Counter Styles */
+    .stat-counter {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Eye Health Insights Cards */
+    .eye-insights-section {
+      margin: 3rem 0 2.5rem 0;
+    }
+
+    .eye-insights-img {
+      max-width: 100%;
+      border-radius: 1.5rem;
+      box-shadow: 0 0 32px #0dcaf022;
+      object-fit: cover;
+      min-height: 260px;
+    }
+
+    .eye-insights-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .eye-insight-card {
+      background: rgba(24, 28, 36, 0.85);
+      border-radius: 1.5rem;
+      box-shadow: 0 0 32px #0dcaf022;
+      border: 1.5px solid #0dcaf033;
+      padding: 1.5rem 1.2rem;
+      text-align: left;
+      color: #fff;
+      transition: box-shadow 0.2s, transform 0.2s;
+      min-height: 120px;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .eye-insight-card:hover {
+      box-shadow: 0 8px 32px #0dcaf055;
+      transform: translateY(-4px) scale(1.03);
+    }
+
+    .eye-insight-icon {
+      font-size: 2.2rem;
+      color: #0dcaf0;
+      flex-shrink: 0;
+    }
+
+    .eye-insight-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .eye-insight-text {
+      color: #b8eaff;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 991.98px) {
+      .eye-insights-cards {
+        gap: 1rem;
+      }
+
+      .eye-insights-section .row {
+        flex-direction: column-reverse;
+      }
+
+      .eye-insights-img {
+        margin-bottom: 2rem;
+      }
+    }
+
+    /* Glassmorphism Button Styles */
+    .btn-glass-main {
+      background: rgba(13, 202, 240, 0.959);
+      color: #d4dcdd !important;
+      border: 1.5px solid #04c4eb91;
+      border-radius: 2rem;
+      font-weight: 700;
+      font-size: 1.15rem;
+      padding: 0.7rem 2.2rem;
+      box-shadow: 0 2px 16px #0dcaf022, 0 1.5px 8px #fff2 inset;
+      backdrop-filter: blur(8px) saturate(140%);
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+    }
+
+    .btn-glass-main:hover,
+    .btn-glass-main:focus {
+      background: rgba(13, 202, 240, 0.32);
+      color: #fff !important;
+      box-shadow: 0 6px 24px #0dcaf088, 0 1.5px 8px #fff4 inset;
+      border-color: #6f42c1;
+      transform: scale(1.05);
+    }
+
+    .btn-glass-outline-main {
+      background: transparent;
+      border: 1.5px solid #0dcaf0;
+      color: #0dcaf0 !important;
+      border-radius: 2rem;
+      font-weight: 700;
+      font-size: 1.15rem;
+      padding: 0.5rem 2rem;
+      box-shadow: 0 2px 16px #0dcaf022;
+      backdrop-filter: blur(8px) saturate(140%);
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+    }
+
+    .btn-glass-outline-main:hover,
+    .btn-glass-outline-main:focus {
+      background: rgba(13, 202, 240, 0.18);
+      color: #fff !important;
+      border-color: #6f42c1;
+      box-shadow: 0 6px 24px #0dcaf088;
+      transform: scale(1.05);
+    }
+
+    /* How It Works Section Modern - Upgraded */
+    .how-section-bg {
+      background: linear-gradient(120deg, #10131a 60%, #232b3b 100%);
+      padding: 3rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated floating shapes */
+    .how-bg-shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.13;
+      filter: blur(16px);
+      z-index: 0;
+    }
+
+    .how-bg-shape1 {
+      width: 220px;
+      height: 220px;
+      background: #0dcaf0;
+      top: 10%;
+      left: -80px;
+    }
+
+    .how-bg-shape2 {
+      width: 160px;
+      height: 160px;
+      background: #6f42c1;
+      bottom: 8%;
+      right: -60px;
+    }
+
+    .how-bg-shape3 {
+      width: 90px;
+      height: 90px;
+      background: #fff;
+      top: 60%;
+      left: 40%;
+      opacity: 0.07;
+    }
+
+    .how-img-illustration-wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .how-img-illustration {
+      max-width: 100%;
+      border-radius: 1.5rem;
+      box-shadow: 0 0 32px #0dcaf022;
+      object-fit: cover;
+      position: relative;
+      height: 92vh;
+
+    }
+
+    .how-img-gradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 1.5rem;
+      background: linear-gradient(120deg, #0dcaf0cc 0%, #232b3bcc 100%);
+      opacity: 0.22;
+      pointer-events: none;
+    }
+
+    .how-steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Timeline vertical line */
+    .how-steps-list::before {
+      content: '';
+      position: absolute;
+      left: 28px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #0dcaf0 0%, #6f42c1 100%);
+      border-radius: 2px;
+      z-index: 0;
+      opacity: 0.18;
+    }
+
+    .how-step-card {
+      background: rgba(24, 28, 36, 0.85);
+      border-radius: 1.5rem;
+      box-shadow: 0 0 32px #0dcaf022;
+      border: 1.5px solid #0dcaf033;
+      padding: 2rem 1.5rem 2rem 3.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+      position: relative;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .how-step-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.7s cubic-bezier(.4, 2, .6, 1), transform 0.7s cubic-bezier(.4, 2, .6, 1);
+    }
+
+    .how-step-card:hover {
+      box-shadow: 0 8px 32px #0dcaf055, 0 0 0 4px #0dcaf033;
+      transform: translateY(-4px) scale(1.04);
+    }
+
+    .how-step-icon {
+      font-size: 2.7rem;
+      color: #0dcaf0;
+      flex-shrink: 0;
+      transition: transform 0.18s, filter 0.18s;
+      filter: drop-shadow(0 0 8px #0dcaf055);
+    }
+
+    .how-step-card:hover .how-step-icon {
+      animation: pulse-icon 0.5s;
+      filter: drop-shadow(0 0 16px #0dcaf0cc);
+      transform: scale(1.18);
+    }
+
+    @keyframes pulse-icon {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.22);
+      }
+
+      100% {
+        transform: scale(1.18);
+      }
+    }
+
+    .how-step-num {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #6f42c1;
+      margin-bottom: 0.2rem;
+    }
+
+    .how-step-content {
+      flex: 1;
+    }
+
+    .how-step-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .how-step-desc {
+      color: #b8eaff;
+      font-size: 1.05rem;
+    }
+
+    /* Timeline dot for each step */
+    .how-step-dot {
+      position: absolute;
+      left: 18px;
+      top: 2.1rem;
+      width: 18px;
+      height: 18px;
+      background: linear-gradient(135deg, #0dcaf0 60%, #6f42c1 100%);
+      border-radius: 50%;
+      box-shadow: 0 0 12px #0dcaf055;
+      border: 2.5px solid #fff2;
+      z-index: 2;
+    }
+
+    @media (max-width: 991.98px) {
+      .how-steps-list {
+        gap: 1.2rem;
+      }
+
+      .how-section-bg .row {
+        flex-direction: column-reverse;
+      }
+
+      .how-img-illustration {
+        margin-bottom: 2rem;
+      }
+
+      .how-steps-list::before,
+      .how-step-dot {
+        display: none;
+      }
+
+      .how-step-card {
+        padding-left: 2rem;
+      }
+    }
+
+    /* Modern FAQ Section */
+    .faq-section-bg {
+      background: linear-gradient(120deg, #10131a 60%, #232b3b 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 3rem 0;
+    }
+
+    .faq-bg-shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.13;
+      filter: blur(32px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .faq-bg-shape1 {
+      width: 140px;
+      height: 140px;
+      background: #0dcaf0;
+      top: 10%;
+      left: -40px;
+    }
+
+    .faq-bg-shape2 {
+      width: 90px;
+      height: 90px;
+      background: #6f42c1;
+      bottom: 8%;
+      right: -30px;
+    }
+
+    .faq-bg-shape3 {
+      width: 60px;
+      height: 60px;
+      background: #fff;
+      top: 70%;
+      left: 60%;
+      opacity: 0.09;
+    }
+
+    .faq-glass {
+      background: rgba(24, 28, 36, 0.85) !important;
+      border-radius: 1.25rem !important;
+      border: 1.5px solid #0dcaf033 !important;
+      box-shadow: 0 0 32px #0dcaf022 !important;
+      color: #fff !important;
+    }
+
+    .faq-accordion .accordion-button {
+      background: transparent !important;
+      color: #0dcaf0 !important;
+      font-weight: 700;
+      font-size: 1.15rem;
+      border-radius: 1.25rem !important;
+      box-shadow: none !important;
+      padding: 1.1rem 1.5rem 1.1rem 2.7rem;
+      position: relative;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .faq-accordion .accordion-button.collapsed {
+      color: #fff !important;
+    }
+
+
+    .faq-accordion .accordion-button::after {
+  content: '+';
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  color: #0dcaf0;
+  opacity: 0.85;
+  transition: transform 0.3s;
+  background-image: none !important;
+  border: none !important;
+    }
+
+    .faq-accordion .accordion-button:not(.collapsed)::after {
+  content: '-';
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  color: #0dcaf0;
+  opacity: 0.85;
+  background-image: none !important;
+  border: none !important;
+    }
+
+    .faq-accordion .accordion-body {
+      background: transparent !important;
+      color: #b8eaff !important;
+      font-size: 1.08rem;
+      border-radius: 0 0 1.25rem 1.25rem !important;
+      padding: 1.2rem 2.2rem 1.2rem 2.7rem;
+    }
+
+    .faq-section-title {
+      text-align: center;
+      font-size: 2.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .faq-section-subtitle {
+      text-align: center;
+      color: #b8eaff;
+      font-size: 1.18rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: 991.98px) {
+      .faq-section-bg {
+        padding: 2rem 0;
+      }
+
+      .faq-section-title {
+        font-size: 1.5rem;
+      }
+
+      .faq-section-subtitle {
+        font-size: 1rem;
+      }
+    }
+
+
+    .back-to-top-btn {
+      position: fixed;
+      right: 32px;
+      bottom: 32px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0dcaf0 60%, #6f42c1 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 24px #0dcaf088;
+      z-index: 3000;
+      cursor: pointer;
+      border: none;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+
+    .back-to-top-btn.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1.08);
+    }
+
+    .back-to-top-btn:hover {
+      background: linear-gradient(135deg, #6f42c1 60%, #0dcaf0 100%);
+      box-shadow: 0 8px 32px #6f42c188;
+      transform: scale(1.13) translateY(-4px);
+    }
+
+    @media (max-width: 600px) {
+      .back-to-top-btn {
+        right: 16px;
+        bottom: 16px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+      }
+    }
+
+    /* CTA Glassmorphism Section */
+    .cta-glass-section {
+      background: linear-gradient(90deg, #0dcaf0 0%, #10131a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-glass-card {
+      background: rgba(24, 28, 36, 0.85);
+      border-radius: 2rem;
+      box-shadow: 0 8px 32px #0dcaf055, 0 0 0 6px #0dcaf033;
+      border: 2.5px solid transparent;
+      background-clip: padding-box;
+      backdrop-filter: blur(12px) saturate(140%);
+      max-width: 480px;
+      margin: 0 auto;
+      position: relative;
+      animation: float-cta 3.5s ease-in-out infinite;
+    }
+
+    .cta-icon {
+      font-size: 3.5rem;
+      color: #0dcaf0;
+      filter: drop-shadow(0 0 16px #0dcaf0cc);
+      margin-bottom: 0.5rem;
+      animation: glow-cta 2.5s alternate infinite;
+    }
+
+    @keyframes float-cta {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    @keyframes glow-cta {
+      0% {
+        filter: drop-shadow(0 0 8px #0dcaf0cc);
+      }
+
+      100% {
+        filter: drop-shadow(0 0 32px #0dcaf0cc);
+      }
+    }
+
+    .btn-cta-glass-main {
+      background: linear-gradient(90deg, #0dcaf0 0%, #6f42c1 100%);
+      color: #fff !important;
+      border: none;
+      border-radius: 2rem;
+      font-weight: 700;
+      font-size: 1.25rem;
+      box-shadow: 0 4px 24px #0dcaf088;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+    }
+
+    .btn-cta-glass-main:hover,
+    .btn-cta-glass-main:focus {
+      background: linear-gradient(90deg, #6f42c1 0%, #0dcaf0 100%);
+      color: #fff !important;
+      box-shadow: 0 8px 32px #6f42c188;
+      transform: scale(1.06);
+    }
+
+    @media (max-width: 600px) {
+      .cta-glass-card {
+        padding: 2rem 1rem;
+      }
+
+      .cta-icon {
+        font-size: 2.2rem;
+      }
+
+      .btn-cta-glass-main {
+        font-size: 1rem;
+        padding: 0.7rem 2rem;
+      }
+    }
+
+    /* Why Professionals Trust Section */
+    .trust-section-bg {
+      background: linear-gradient(120deg, #10131a 60%, #232b3b 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trust-card {
+      background: rgba(24, 28, 36, 0.85);
+      border-radius: 1.5rem;
+      box-shadow: 0 0 32px #0dcaf022;
+      border: 1.5px solid #0dcaf033;
+      color: #fff;
+      transition: box-shadow 0.2s, transform 0.2s;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .trust-card:hover {
+      box-shadow: 0 8px 32px #0dcaf055, 0 0 0 4px #0dcaf033;
+      transform: translateY(-4px) scale(1.04);
+    }
+
+    .trust-icon {
+      font-size: 2.7rem;
+      color: #0dcaf0;
+      filter: drop-shadow(0 0 16px #0dcaf0cc);
+      transition: filter 0.2s, transform 0.2s;
+    }
+
+    .trust-card:hover .trust-icon {
+      filter: drop-shadow(0 0 32px #0dcaf0);
+      transform: scale(1.12);
+    }
+
+    @media (max-width: 991.98px) {
+      .trust-card {
+        min-height: 180px;
+        padding: 1.5rem 0.8rem;
+      }
+
+      .trust-icon {
+        font-size: 2.1rem;
+      }
+    }
+
+    /* From Uiverse.io by vikramsinghnegi */
+    .center-body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      background: #262626;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+    }
+
+    .loader-circle-9 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px;
+      height: 70px;
+      background: transparent;
+      border: 3px solid #3c3c3c;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 70px;
+      font-family: sans-serif;
+      font-size: 12px;
+      color: #00eaff;
+      text-transform: uppercase;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .loader-circle-9:before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      width: 100%;
+      height: 100%;
+      border: 3px solid transparent;
+      border-top: 3px solid #00eaff;
+      border-right: 3px solid #00eaff;
+      border-radius: 50%;
+      animation: animateC 2s linear infinite;
+    }
+
+    .loader-circle-9 span {
+      display: block;
+      position: absolute;
+      top: calc(50% - 2px);
+      left: 50%;
+      width: 50%;
+      height: 4px;
+      background: transparent;
+      transform-origin: left;
+      animation: animate 2s linear infinite;
+    }
+
+    .loader-circle-9 span:before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #00eaff;
+      top: -6px;
+      right: -8px;
+      box-shadow: 0 0 20px #00eaff;
+    }
+
+    @keyframes animateC {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes animate {
+      0% {
+        transform: rotate(45deg);
+      }
+
+      100% {
+        transform: rotate(405deg);
+      }
+    }
+
+    /* Theme toggle and support button styles */
+    #supportBtn {
+      border: 1.5px solid #0dcaf0;
+      background: rgba(13, 202, 240, 0.10);
+      color: #0dcaf0;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+
+    #supportBtn:hover {
+      background: #0dcaf0;
+      color: #fff;
+      box-shadow: 0 4px 16px #0dcaf088;
+    }
+
+    .btn-login-navbar {
+      background: linear-gradient(90deg, #0dcaf0 0%, #6f42c1 100%);
+      color: #fff !important;
+      border: none;
+      border-radius: 2rem;
+      font-weight: 700;
+      box-shadow: 0 4px 24px #0dcaf088;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+    }
+
+    .btn-login-navbar:hover,
+    .btn-login-navbar:focus {
+      background: linear-gradient(90deg, #6f42c1 0%, #0dcaf0 100%);
+      color: #fff !important;
+      box-shadow: 0 8px 32px #6f42c188;
+      transform: scale(1.06);
+    }
+
+    /* Extra mobile responsiveness */
+    @media (max-width: 575.98px) {
+      h1, .display-3, .display-5 {
+        font-size: 2rem !important;
+      }
+      .lead, p, .fs-5 {
+        font-size: 1rem !important;
+      }
+      .hero-section, .how-section-bg, .eye-insights-section, .cta-glass-section, .trust-section-bg, .faq-section-bg {
+        padding: 1.2rem 0 !important;
+      }
+      .hero-img, .eye-insights-img, .how-img-illustration {
+        max-width: 100%;
+        height: auto !important;
+        border-radius: 1rem !important;
+      }
+      .btn, .btn-lg, .btn-cta-glass-main, .btn-glass-main, .btn-glass-outline-main {
+        font-size: 0.95rem !important;
+        padding: 0.5rem 1.2rem !important;
+      }
+      .navbar-brand .fw-bold {
+        font-size: 1.1rem !important;
+      }
+      .navbar {
+        padding: 0.5rem 0.8rem !important;
+      }
+      .eye-insight-card, .trust-card, .how-step-card, .faq-glass, .cta-glass-card {
+        padding: 1rem !important;
+        min-height: unset !important;
+      }
+      footer .row {
+        flex-direction: column;
+        text-align: center;
+      }
+      .back-to-top-btn, .chat-float-btn {
+        right: 10px !important;
+        bottom: 10px !important;
+      }
+    }
+
+    /* Space between FAQ accordion text and + / - icon */
+.faq-accordion .accordion-button::after,
+.faq-accordion .accordion-button:not(.collapsed)::after {
+  margin-left: 0.7rem; /* Space between text and icon */
+}
+
+/* Mobile & tablet: icon font-size and spacing */
+@media (max-width: 991.98px) {
+  .faq-accordion .accordion-button::after,
+  .faq-accordion .accordion-button:not(.collapsed)::after {
+    font-size: 1.1rem !important;
+    margin-left: 1rem !important; /* More space for mobile/tablet */
+    right: 1rem !important;
+  }
+  .faq-accordion .accordion-button {
+    font-size: 1rem !important;
+    padding-right: 2.2rem !important;
+  }
+}
+  </style>
+</head>
+
+<body>
+  <!-- From Uiverse.io by vikramsinghnegi -->
+  <div class="center-body" id="pageLoader">
+    <div class="loader-circle-9">
+      Loading.....
+      <span></span>
+    </div>
+  </div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <i class="bi bi-eye fs-2 me-2"></i>
+        <span class="fw-bold">Optimmystic</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="eye-test.html">Eye Test</a></li>
+          <li class="nav-item"><a class="nav-link" href="test-result.html">Test Results</a></li>
+          <li class="nav-item"><a class="nav-link" href="product.html">Our Product</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+        </ul>
+        <div class="d-flex align-items-center ms-lg-3 gap-2">
+          <!-- Support Icon Button -->
+          <button id="supportBtn" class="btn btn-outline-info btn-sm rounded-circle" title="Support / Help"
+            style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;">
+            <i class="bi bi-question-circle-fill"></i>
+          </button>
+          <!-- Modern Login Button -->
+          <a href="login.html" class="btn btn-glass-main btn-login-navbar d-flex align-items-center gap-2 px-4 py-2"
+            style="font-weight:700;font-size:1.08rem;">
+            <i class="bi bi-box-arrow-in-right fs-5"></i>
+            <span>Login</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Hero Section -->
+  <section class="hero-section py-5" id="hero" style="position: relative;">
+    <img src="assets/images/carousol1.jpg" class="hero-bg-img" alt="Eye background">
+    <div class="container hero-content">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-lg-6">
+          <h1 class="display-3 fw-bold mb-3">Smarter Vision, Healthier Life</h1>
+          <p class="lead mb-4">AI-powered eye testing for everyone. Fast, private, and trusted by doctors worldwide.
+            Discover your eye health in minutes.</p>
+          <a href="eye-test.html" class="btn btn-cta-glass-main btn-lg px-4 py-2 ">Start Your Test</a>
+          <a href="about.html" class="btn btn-glass-outline-main">How It Works</a>
+        </div>
+        <div class="col-lg-5 text-center">
+          <img src="assets/images/macro-eye-iris (1).jpg" class="hero-img" alt="AI Eye Test">
+        </div>
+      </div>
+    </div>
+    <!-- Animated Scroll Down Arrow -->
+    <div class="scroll-down-arrow" id="scrollDownArrow" title="Scroll Down">
+      <i class="bi bi-chevron-double-down"></i>
+    </div>
+  </section>
+  <!-- Features Section -->
+  <section id="features" class="py-5 position-relative" style="overflow: hidden;">
+    <!-- Modern floating background shapes for this section -->
+    <div class="how-bg-shape how-bg-shape1"></div>
+    <div class="how-bg-shape how-bg-shape2"></div>
+    <div class="how-bg-shape how-bg-shape3"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center mb-5">
+          <h1 class="fw-bold display-5 mb-2">Why Optimmystic?</h1>
+          <p class="text-secondary fs-5 mb-0 ">Experience the future of eye care with our AI-powered eye test. Fast,
+            accurate, and accessible for everyone—no clinic visit required!</p>
+        </div>
+      </div>
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <img src="assets/images/futuristic-scene-with-high-tech-robot-used-construction-industry.jpg" alt="Eye Test"
+            class="img-fluid rounded-4 shadow-lg w-100" style="max-height: 370px; object-fit: cover;">
+        </div>
+        <div class="col-lg-6">
+          <ul class="list-unstyled text-light fs-5 mb-0">
+            <li class="mb-3"><i class="bi bi-check-circle-fill text-info me-2"></i> <b>Instant Results:</b> Upload your
+              eye image and get a detailed report in seconds.</li>
+            <li class="mb-3"><i class="bi bi-check-circle-fill text-info me-2"></i> <b>Early Detection:</b> Our AI can
+              spot early signs of common vision problems and eye diseases.</li>
+            <li><i class="bi bi-check-circle-fill text-info me-2"></i> <b>Doctor Trusted:</b> Results are reliable and
+              can be shared with your eye care professional.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Eye Health Insights Section -->
+  <section class="eye-insights-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center mb-5">
+          <h1 class="fw-bold display-5 mb-2">Eye Health Insights</h1>
+          <p class="text-secondary fs-5 mb-0">Stay informed and keep your vision sharp with these essential eye health
+            tips and facts.</p>
+        </div>
+      </div>
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="eye-insights-cards">
+            <div class="eye-insight-card">
+              <span class="eye-insight-icon">🩺</span>
+              <div>
+                <div class="eye-insight-title">Regular Eye Exams</div>
+                <div class="eye-insight-text">Schedule a comprehensive eye test every year—even if you have no symptoms.
+                  Early detection saves sight!</div>
+              </div>
+            </div>
+            <div class="eye-insight-card">
+              <span class="eye-insight-icon">💧</span>
+              <div>
+                <div class="eye-insight-title">Prevent Digital Eye Strain</div>
+                <div class="eye-insight-text">Follow the 20-20-20 rule: every 20 minutes, look at something 20 feet away
+                  for 20 seconds.</div>
+              </div>
+            </div>
+            <div class="eye-insight-card">
+              <span class="eye-insight-icon">🔬</span>
+              <div>
+                <div class="eye-insight-title">AI for Early Detection</div>
+                <div class="eye-insight-text">AI-powered tests can spot early signs of eye diseases—get checked and stay
+                  ahead of problems.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mb-4 mb-lg-0 order-lg-last">
+          <img src="assets/images/healthy eye.webp" alt="Eye Health" class="eye-insights-img w-100">
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- How It Works Section -->
+  <section id="how" class="how-section-bg">
+    <!-- Animated floating shapes -->
+    <div class="how-bg-shape how-bg-shape1"></div>
+    <div class="how-bg-shape how-bg-shape2"></div>
+    <div class="how-bg-shape how-bg-shape3"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center mb-5">
+          <h1 class="fw-bold display-5 mb-2">How It Works</h1>
+          <p class="text-secondary fs-5 mb-0">Upload. Analyze. Get Results. All in minutes.</p>
+        </div>
+      </div>
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <div class="how-img-illustration-wrap">
+            <img src="assets/images/how-it-work.jpg" alt="AI Eye Test Illustration" class="how-img-illustration w-100">
+            <div class="how-img-gradient"></div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="how-steps-list">
+            <div class="how-step-card">
+              <span class="how-step-dot"></span>
+              <span class="how-step-icon"><i class="bi bi-upload"></i></span>
+              <div class="how-step-content">
+                <div class="how-step-num">1</div>
+                <div class="how-step-title">Upload Eye Image</div>
+                <div class="how-step-desc">Take or upload a clear photo of your eye. Make sure it’s well-lit and in
+                  focus for best results.</div>
+              </div>
+            </div>
+            <div class="how-step-card">
+              <span class="how-step-dot"></span>
+              <span class="how-step-icon"><i class="bi bi-cpu"></i></span>
+              <div class="how-step-content">
+                <div class="how-step-num">2</div>
+                <div class="how-step-title">AI Analysis</div>
+                <div class="how-step-desc">Our advanced AI scans your image, checking for vision issues and early signs
+                  of eye diseases.</div>
+              </div>
+            </div>
+            <div class="how-step-card">
+              <span class="how-step-dot"></span>
+              <span class="how-step-icon"><i class="bi bi-bar-chart-line"></i></span>
+              <div class="how-step-content">
+                <div class="how-step-num">3</div>
+                <div class="how-step-title">Get Results</div>
+                <div class="how-step-desc">See your results instantly and get expert suggestions for next steps or
+                  professional care.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Testimonials Section -->
+  <!-- <section id="testimonials" class="py-5">
+      <div class="container">
+        <div class="row text-center mb-4">
+          <div class="col">
+            <h2 class="fw-bold">What Our Users Say</h2>
+          </div>
+        </div>
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-4">
+            <div class="card testimonial-card h-100 p-4">
+              <p class="card-text">"I checked my vision in minutes! The AI is amazing and results are instant."</p>
+              <h6 class="card-title mt-3">- Sarah, Student</h6>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card testimonial-card h-100 p-4">
+              <p class="card-text">"As a doctor, I recommend Optimmystic for quick, reliable eye tests."</p>
+              <h6 class="card-title mt-3">- Dr. Ahmed, Ophthalmologist</h6>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card testimonial-card h-100 p-4">
+              <p class="card-text">"My kids and parents both used it easily. Great for families!"</p>
+              <h6 class="card-title mt-3">- Ali, Parent</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+  <!-- FAQ Preview Section -->
+  <section id="faq" class="faq-section-bg">
+    <!-- Modern floating background shapes for this section -->
+    <div class="faq-bg-shape faq-bg-shape1"></div>
+    <div class="faq-bg-shape faq-bg-shape2"></div>
+    <div class="faq-bg-shape faq-bg-shape3"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="faq-section-title">FAQs</div>
+          <div class="faq-section-subtitle">Your questions, answered.</div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="accordion faq-accordion" id="faqAccordion">
+            <div class="accordion-item faq-glass">
+              <h2 class="accordion-header" id="faq1">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                  How does the AI eye test work?
+                </button>
+              </h2>
+              <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="faq1"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Our AI analyzes your uploaded eye image and provides instant results about your vision health.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item faq-glass">
+              <h2 class="accordion-header" id="faq2">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                  Is my data safe and private?
+                </button>
+              </h2>
+              <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Yes, your data is encrypted and never shared. Privacy is our top priority.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item faq-glass">
+              <h2 class="accordion-header" id="faq3">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                  Who can use Optimmystic?
+                </button>
+              </h2>
+              <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Anyone! Our platform is designed for kids, adults, seniors, and healthcare professionals.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item faq-glass">
+              <h2 class="accordion-header" id="faq4">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                  Can I use Optimmystic on my phone?
+                </button>
+              </h2>
+              <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  Yes! Optimmystic is fully responsive and works on all smartphones, tablets, and computers. Just open
+                  the website in your browser and start your test.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item faq-glass">
+              <h2 class="accordion-header" id="faq5">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                  Does the AI replace a real doctor?
+                </button>
+              </h2>
+              <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  No. Optimmystic’s AI provides instant analysis and helpful suggestions, but it does not replace a
+                  professional eye exam. Always consult an eye care specialist for medical advice.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item faq-glass">
+              <h2 class="accordion-header" id="faq6">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                  How long does the test take?
+                </button>
+              </h2>
+              <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="faq6"
+                data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  The AI eye test takes less than 2 minutes from upload to results. Most users get their analysis in
+                  just a few seconds!
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="text-end mt-3">
+              <a href="faq.html" class="text-decoration-none text-info">Read more FAQs <i class="bi bi-arrow-right"></i></a>
+            </div> -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CTA Banner Section -->
+  <section id="cta" class="cta-glass-section py-5">
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 320px;">
+      <div class="cta-glass-card text-center p-5">
+        <div class="cta-icon mb-3">
+          <i class="bi bi-eye-fill"></i>
+        </div>
+        <h2 class="fw-bold mb-3">Start Your AI Eye Test Today</h2>
+        <p class="lead mb-4">Join thousands getting instant, expert eye health insights.<br>Fast, private, and trusted
+          by doctors worldwide.</p>
+        <a href="eye-test.html" class="btn btn-cta-glass-main btn-lg px-5 py-3">Start Eye Test <i
+            class="bi bi-arrow-right ms-2"></i></a>
+      </div>
+    </div>
+  </section>
+  <!-- Partners / Trusted By Section -->
+
+  <!-- Why Professionals Trust Section -->
+  <section id="why-trust" class="py-5 trust-section-bg">
+    <div class="container">
+      <div class="row text-center mb-4">
+        <div class="col">
+          <h2 class="fw-bold">Why Professionals Trust Optimmystic</h2>
+          <p class="text-secondary">Our platform is trusted by eye care professionals worldwide for its accuracy,
+            privacy, and innovation.</p>
+        </div>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="trust-card h-100 text-center p-4">
+            <i class="bi bi-person-badge-fill trust-icon mb-3"></i>
+            <h5 class="fw-bold mb-2">Doctor Recommended</h5>
+            <p class="mb-0 text-secondary">Endorsed by leading ophthalmologists and vision experts.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="trust-card h-100 text-center p-4">
+            <i class="bi bi-shield-lock-fill trust-icon mb-3"></i>
+            <h5 class="fw-bold mb-2">Secure & Private</h5>
+            <p class="mb-0 text-secondary">Your data is encrypted and never shared. Privacy is our top priority.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="trust-card h-100 text-center p-4">
+            <i class="bi bi-cpu-fill trust-icon mb-3"></i>
+            <h5 class="fw-bold mb-2">AI Accuracy</h5>
+            <p class="mb-0 text-secondary">Advanced AI delivers fast, reliable, and accurate results.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="trust-card h-100 text-center p-4">
+            <i class="bi bi-globe2 trust-icon mb-3"></i>
+            <h5 class="fw-bold mb-2">Global Reach</h5>
+            <p class="mb-0 text-secondary">Used and trusted by professionals in 50+ countries.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="py-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h5>Optimmystic</h5>
+          <p class="mb-0">&copy; 2025 Optimmystic. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-md-end mt-3 mt-md-0">
+          <a href="contact.html" class="text-decoration-none me-3">Contact</a>
+          <a href="#" class="text-decoration-none me-3">Privacy Policy</a>
+          <a href="#" class="text-decoration-none">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Login/Signup Modal -->
+  <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-dark text-white">
+        <div class="modal-header border-0">
+          <h5 class="modal-title" id="authModalLabel">Login or Signup</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mb-2">Login</button>
+            <button type="button" class="btn btn-outline-light w-100">Signup</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Back to Top Button -->
+  <button id="backToTopBtn" class="back-to-top-btn" title="Back to Top">
+    <i class="bi bi-chevron-double-up"></i>
+  </button>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Scroll down arrow click handler
+    document.getElementById('scrollDownArrow')?.addEventListener('click', function () {
+      const features = document.getElementById('features');
+      if (features) {
+        features.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+
+    // Animated Counters
+    function animateCounter(el, to, suffix = '', duration = 1800) {
+      let start = 0;
+      let startTime = null;
+      const isComma = to > 999;
+      function step(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const value = Math.floor(progress * (to - start) + start);
+        el.textContent = isComma ? value.toLocaleString() + suffix : value + suffix;
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          el.textContent = isComma ? to.toLocaleString() + suffix : to + suffix;
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    function handleCounters() {
+      const counters = document.querySelectorAll('.stat-counter');
+      counters.forEach(counter => {
+        if (counter.dataset.animated) return;
+        const to = parseInt(counter.getAttribute('data-count'));
+        const suffix = counter.getAttribute('data-suffix') || '';
+        animateCounter(counter, to, suffix);
+        counter.dataset.animated = 'true';
+      });
+    }
+    // Use IntersectionObserver for animation on scroll
+    const statsSection = document.getElementById('stats');
+    if (window.IntersectionObserver && statsSection) {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          handleCounters();
+          observer.disconnect();
+        }
+      }, { threshold: 0.3 });
+      observer.observe(statsSection);
+    } else {
+      // fallback
+      window.addEventListener('load', handleCounters);
+    }
+
+    // On reload, scroll to hero section
+    if (performance && performance.navigation && performance.navigation.type === 1) {
+      // Only on reload, not on normal navigation
+      window.addEventListener('DOMContentLoaded', function () {
+        var hero = document.getElementById('hero');
+        if (hero) hero.scrollIntoView({ behavior: 'auto' });
+      });
+    }
+
+    // Back to Top Button
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 200) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+    backToTopBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Animate How It Works cards on scroll
+    function animateHowSteps() {
+      const cards = document.querySelectorAll('.how-step-card');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      cards.forEach(card => observer.observe(card));
+    }
+    window.addEventListener('DOMContentLoaded', animateHowSteps);
+
+    // Hide loader when page is fully loaded
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        var loader = document.getElementById('pageLoader');
+        if (loader) loader.style.opacity = '0';
+        setTimeout(function () {
+          if (loader) loader.style.display = 'none';
+        }, 400);
+      }, 400); // slight delay for smoothness
+    });
+
+    // Support button logic
+    const supportBtn = document.getElementById('supportBtn');
+    if (supportBtn) {
+      supportBtn.addEventListener('click', function () {
+        alert('For support, please email us at support@optimmystic.com or use the contact page.');
+      });
+    }
+  </script>
+</body>
+
+</html>

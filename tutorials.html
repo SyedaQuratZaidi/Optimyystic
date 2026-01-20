@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimmystic | Tutorials - How to Take Eye Test</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    <style>
+        @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css');
+        html, body {
+          height: 100%;
+          min-height: 100vh;
+        }
+        body {
+          background: #10131a;
+          color: #fff;
+          font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+          padding-top: 76px; 
+          overflow-x: hidden;
+        }
+        .navbar {
+          background: rgba(24,28,36,0.95) !important;
+          box-shadow: 0 2px 16px #0005;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 1030;
+          transition: background 0.3s;
+        }
+        .navbar-brand .bi {
+           color: #0dcaf0 !important;
+          }
+
+          .navbar-nav .nav-link {
+          position: relative;
+        }
+        .navbar-nav .nav-link::after {
+          content: '';
+          display: block;
+          height: 3px;
+          width: 0;
+          background: linear-gradient(90deg, #0dcaf0 0%, #6f42c1 100%);
+          border-radius: 2px;
+          margin: 0 auto;
+          transition: width 0.3s cubic-bezier(.4,2,.6,1);
+        }
+        .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after {
+          width: 80%;
+        }
+        .navbar-nav .nav-link.active, .navbar-nav .nav-link:focus, .navbar-nav .nav-link[aria-current='page'] {
+          color: #0dcaf0 !important;
+          font-weight: 700;
+        }
+        .navbar-nav .nav-link:hover {
+          color: #0dcaf0 !important;
+          text-shadow: 0 2px 8px #0dcaf055;
+        }
+        .btn-primary,
+         .btn-outline-primary {
+           border-radius: 2rem;
+           font-weight: 600;
+           letter-spacing: 0.5px;
+           transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+          }
+        .btn-primary:hover,
+        .btn-outline-primary:hover,
+        .btn-dark:hover {
+           box-shadow: 0 4px 24px #0dcaf088; 
+           transform: translateY(-2px) scale(1.03);
+          }
+
+        /* Hero Section */
+        .hero-wrap {
+          position: relative;
+          width: 100%;
+          min-height: 420px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+        .hero-bg {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          filter: brightness(0.72);
+        }
+        .hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, rgba(8,10,15,0.75) 0%, rgba(8,10,15,0.55) 60%, rgba(8,10,15,0.85) 100%);
+        }
+        .hero-content {
+          position: relative;
+          z-index: 1;
+          width: 100%;
+        }
+        .hero-title {
+          font-size: 3.1rem;
+          font-weight: 800;
+          letter-spacing: .5px;
+          text-shadow: 0 4px 18px #0009;
+        }
+        .hero-sub {
+          color: #cfefff;
+          text-shadow: 0 2px 12px #0009;
+        }
+        .text-gradient {
+          background: linear-gradient(90deg, #0dcaf0 0%, #6f42c1 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        /* Tutorial Cards */
+        .tutorial-card {
+          background: rgba(24,28,36,0.85);
+          border: 1px solid rgba(13,202,240,0.25);
+          border-radius: 16px;
+          transition: all 0.3s ease;
+          height: 100%;
+        }
+        .tutorial-card:hover {
+          transform: translateY(-5px);
+          border-color: rgba(13,202,240,0.5);
+          box-shadow: 0 10px 30px rgba(13,202,240,0.2);
+        }
+        .step-number {
+          width: 50px;
+          height: 50px;
+          background: linear-gradient(45deg, #0dcaf0, #6f42c1);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+          font-size: 1.2rem;
+          margin-bottom: 1rem;
+        }
+        .feature-icon {
+          width: 60px;
+          height: 60px;
+          background: linear-gradient(45deg, #0dcaf0, #6f42c1);
+          border-radius: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+        }
+
+        /* Video Container */
+        .video-container {
+          position: relative;
+          background: rgba(24,28,36,0.85);
+          border: 1px solid rgba(13,202,240,0.25);
+          border-radius: 16px;
+          overflow: hidden;
+          aspect-ratio: 16/9;
+        }
+        .video-placeholder {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          background: linear-gradient(135deg, rgba(13,202,240,0.1), rgba(111,66,193,0.1));
+        }
+
+        /* FAQ Section */
+        .faq-item {
+          background: rgba(24,28,36,0.85);
+          border: 1px solid rgba(13,202,240,0.25);
+          border-radius: 12px;
+          margin-bottom: 1rem;
+        }
+        .faq-question {
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        .faq-question:hover {
+          background: rgba(13,202,240,0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+          .hero-wrap { min-height: 320px; }
+          .hero-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <i class="bi bi-eye fs-2 me-2"></i>
+                <span class="fw-bold">Optimmystic</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="eye-test.html">Eye Test</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="tutorials.html">Tutorials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="test-result.html">Test Results</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <div class="d-flex align-items-center ms-lg-3 gap-2">
+                    <!-- Support Icon Button -->
+                    <button id="supportBtn" class="btn btn-outline-info btn-sm rounded-circle" title="Support / Help" style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;">
+                        <i class="bi bi-question-circle-fill"></i>
+                    </button>
+                    <!-- Modern Login Button -->
+                    <a href="login.html" class="btn btn-glass-main btn-login-navbar d-flex align-items-center gap-2 px-4 py-2" style="font-weight:700;font-size:1.08rem;">
+                        <i class="bi bi-box-arrow-in-right fs-5"></i>
+                        <span>Login</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-wrap">
+        <img class="hero-bg" src="assets/images/person-working-html-computer.jpg" alt="Eye Test Tutorials">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="container text-center">
+                <h1 class="hero-title text-gradient mb-3">Eye Test Tutorials</h1>
+                <p class="hero-sub mb-4 fs-5">Learn how to take your eye test step by step</p>
+                <a href="#getting-started" class="btn btn-primary btn-lg px-4 py-3">
+                    <i class="bi bi-play-circle me-2"></i>Get Started
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started Section -->
+    <section id="getting-started" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-gradient mb-3">How to Take Your Eye Test</h2>
+                <p class="text-light-emphasis fs-5">Follow these simple steps to complete your comprehensive eye examination</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Step 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="tutorial-card p-4 text-center">
+                        <div class="step-number mx-auto">1</div>
+                        <h5 class="fw-bold text-info mb-3">Fill Patient Information</h5>
+                        <div class="feature-icon mx-auto mb-3">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <p class="text-light-emphasis">Provide your basic information including name, age, and glasses history for accurate results.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Enter your full name</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Specify your age</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Glasses information</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Previous test results (optional)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="tutorial-card p-4 text-center">
+                        <div class="step-number mx-auto">2</div>
+                        <h5 class="fw-bold text-info mb-3">Setup Your Environment</h5>
+                        <div class="feature-icon mx-auto mb-3">
+                            <i class="bi bi-gear-fill"></i>
+                        </div>
+                        <p class="text-light-emphasis">Ensure optimal testing conditions for accurate vision assessment.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Good lighting conditions</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Stable internet connection</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Allow camera permissions</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Quiet environment</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="tutorial-card p-4 text-center">
+                        <div class="step-number mx-auto">3</div>
+                        <h5 class="fw-bold text-info mb-3">Capture Eye Image</h5>
+                        <div class="feature-icon mx-auto mb-3">
+                            <i class="bi bi-camera-fill"></i>
+                        </div>
+                        <p class="text-light-emphasis">Take a clear photo of your eyes using our guided camera interface.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Position face in overlay</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Ensure clear visibility</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Capture high-quality image</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Review before analysis</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="tutorial-card p-4 text-center">
+                        <div class="step-number mx-auto">4</div>
+                        <h5 class="fw-bold text-info mb-3">AI Analysis</h5>
+                        <div class="feature-icon mx-auto mb-3">
+                            <i class="bi bi-cpu-fill"></i>
+                        </div>
+                        <p class="text-light-emphasis">Our advanced AI system analyzes your eye image for vision assessment.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Automated eye detection</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Vision acuity analysis</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Pattern recognition</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Real-time processing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="tutorial-card p-4 text-center">
+                        <div class="step-number mx-auto">5</div>
+                        <h5 class="fw-bold text-info mb-3">Get Your Results</h5>
+                        <div class="feature-icon mx-auto mb-3">
+                            <i class="bi bi-clipboard2-data-fill"></i>
+                        </div>
+                        <p class="text-light-emphasis">Receive comprehensive results with personalized recommendations.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Left & right eye results</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Overall vision status</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Personalized recommendations</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Download detailed report</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="tutorial-card p-4 text-center">
+                        <div class="step-number mx-auto">6</div>
+                        <h5 class="fw-bold text-info mb-3">Follow Up</h5>
+                        <div class="feature-icon mx-auto mb-3">
+                            <i class="bi bi-arrow-repeat"></i>
+                        </div>
+                        <p class="text-light-emphasis">Take action based on your results and schedule regular check-ups.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Review recommendations</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Consult eye specialist if needed</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Schedule regular tests</li>
+                            <li><i class="bi bi-check-circle text-success me-2"></i>Monitor vision changes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Tutorial Section -->
+    <section class="py-5 bg-dark bg-opacity-25">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-gradient mb-3">Video Tutorial</h2>
+                <p class="text-light-emphasis fs-5">Watch our comprehensive guide for the complete eye test process</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="video-container">
+                        <div class="video-placeholder">
+                            <div class="text-center">
+                                <i class="bi bi-play-circle-fill text-info" style="font-size: 4rem;"></i>
+                                <h4 class="mt-3 text-light">Tutorial Video Coming Soon</h4>
+                                <p class="text-light-emphasis">Step-by-step visual guide for taking your eye test</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Practices Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-gradient mb-3">Best Practices for Accurate Results</h2>
+                <p class="text-light-emphasis fs-5">Follow these tips to ensure the most accurate vision assessment</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="tutorial-card p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="feature-icon me-3" style="width: 50px; height: 50px; font-size: 1.2rem;">
+                                <i class="bi bi-lightbulb-fill"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-info mb-3">Lighting Requirements</h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-arrow-right text-success me-2"></i>Use natural daylight when possible</li>
+                                    <li><i class="bi bi-arrow-right text-success me-2"></i>Avoid harsh shadows on your face</li>
+                                    <li><i class="bi bi-arrow-right text-success me-2"></i>Ensure even lighting on both eyes</li>
+                                    <li><i class="bi bi-arrow-right text-success me-2"></i>Avoid backlighting or glare</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="tutorial-card p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="feature-icon me-3" style="width: 50px; height: 50px; font-size: 1.2rem;">
+                                <i class="bi bi-camera2"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-info mb-3">Camera Positioning</h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-arrow-right text-success me-2"></i>Keep camera at eye level</li>
+                                    <li><i class="bi bi-arrow-right text-success me-2"></i>Maintain 18-24 inches distance</li>
+                                    <li><i class="bi bi-arrow-right text-success me-2"></i>Center your face in the frame</li>
+                                    <li><i class="bi bi-arrow-right text-success me-2"></i>Keep the camera steady</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="tutorial-card p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="feature-icon me-3" style="width: 50px; height: 50px; font-size: 1.2rem;">
+                                <i class="bi bi-eye-fill"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-info mb-3">Eye Preparation</h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-arrow-right text-success me-2"></i>Remove makeup around eyes</li>
+                                    <li><i class="bi bi-arrow-right text-success me-2"></i>Clean glasses if wearing them</li>
+                                    <li><i class="bi bi-arrow-right text-success me-2"></i>Look directly at the camera</li>
+                                    <li><i class="bi bi-arrow-right text-success me-2"></i>Keep eyes wide open</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="tutorial-card p-4">
+                        <div class="d-flex align-items-start">
+                            <div class="feature-icon me-3" style="width: 50px; height: 50px; font-size: 1.2rem;">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-info mb-3">Quality Assurance</h5>
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-arrow-right text-success me-2"></i>Use high-resolution camera</li>
+                                    <li><i class="bi bi-arrow-right text-success me-2"></i>Take multiple shots if needed</li>
+                                    <li><i class="bi bi-arrow-right text-success me-2"></i>Check image clarity before submitting</li>
+                                    <li><i class="bi bi-arrow-right text-success me-2"></i>Retake if image is blurry</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5 bg-dark bg-opacity-25">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-gradient mb-3">Frequently Asked Questions</h2>
+                <p class="text-light-emphasis fs-5">Common questions about our eye test process</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item">
+                        <div class="faq-question p-4" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="mb-0 text-light">How accurate is the online eye test?</h6>
+                                <i class="bi bi-chevron-down text-info"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="faq1">
+                            <div class="p-4 pt-0">
+                                <p class="text-light-emphasis mb-0">Our AI-powered eye test provides preliminary vision screening with high accuracy for basic vision assessment. However, it's not a replacement for comprehensive eye exams by qualified optometrists or ophthalmologists. We recommend using our test as a screening tool and consulting eye care professionals for detailed diagnosis.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item">
+                        <div class="faq-question p-4" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="mb-0 text-light">What equipment do I need for the test?</h6>
+                                <i class="bi bi-chevron-down text-info"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="faq2">
+                            <div class="p-4 pt-0">
+                                <p class="text-light-emphasis mb-0">You only need a device with a camera (smartphone, tablet, or computer with webcam) and a stable internet connection. Ensure your camera has good resolution (minimum 720p recommended) and your device supports modern web browsers like Chrome, Firefox, Safari, or Edge.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item">
+                        <div class="faq-question p-4" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="mb-0 text-light">How long does the eye test take?</h6>
+                                <i class="bi bi-chevron-down text-info"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="faq3">
+                            <div class="p-4 pt-0">
+                                <p class="text-light-emphasis mb-0">The entire process typically takes 3-5 minutes. This includes filling out the patient information form (1-2 minutes), taking the eye photo (1-2 minutes), and receiving AI analysis results (1 minute). The actual image capture and analysis are very quick.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="faq-item">
+                        <div class="faq-question p-4" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="mb-0 text-light">Is my personal information secure?</h6>
+                                <i class="bi bi-chevron-down text-info"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="faq4">
+                            <div class="p-4 pt-0">
+                                <p class="text-light-emphasis mb-0">Yes, we take privacy seriously. Your personal information and eye images are processed locally in your browser and stored securely. We don't share your data with third parties, and you can delete your test results at any time. All data transmission uses encryption.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 5 -->
+                    <div class="faq-item">
+                        <div class="faq-question p-4" data-bs-toggle="collapse" data-bs-target="#faq5">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="mb-0 text-light">Can I retake the test if I'm not satisfied?</h6>
+                                <i class="bi bi-chevron-down text-info"></i>
+                            </div>
+                        </div>
+                        <div class="collapse" id="faq5">
+                            <div class="p-4 pt-0">
+                                <p class="text-light-emphasis mb-0">Absolutely! You can retake the test as many times as you need. We recommend retaking if the lighting wasn't optimal, the image was blurry, or you want to track changes in your vision over time. Each test result is saved separately so you can compare them.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="fw-bold text-gradient mb-3">Ready to Test Your Vision?</h2>
+                    <p class="text-light-emphasis fs-5 mb-4">Start your comprehensive eye test now and get instant results with personalized recommendations.</p>
+                    <a href="eye-test.html" class="btn btn-primary btn-lg px-5 py-3 me-3">
+                        <i class="bi bi-eye-fill me-2"></i>Start Eye Test
+                    </a>
+                    <a href="about.html" class="btn btn-outline-info btn-lg px-5 py-3">
+                        <i class="bi bi-info-circle me-2"></i>Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Support button logic
+        const supportBtn = document.getElementById('supportBtn');
+        if(supportBtn) {
+            supportBtn.addEventListener('click', function() {
+                alert('For support, please email us at support@optimmystic.com or use the contact page.');
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // FAQ accordion icon rotation
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const icon = this.querySelector('.bi-chevron-down');
+                const target = this.getAttribute('data-bs-target');
+                const collapse = document.querySelector(target);
+                
+                collapse.addEventListener('show.bs.collapse', function() {
+                    icon.style.transform = 'rotate(180deg)';
+                });
+                
+                collapse.addEventListener('hide.bs.collapse', function() {
+                    icon.style.transform = 'rotate(0deg)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

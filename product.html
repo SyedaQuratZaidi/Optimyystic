@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optimmystic | Our Products</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+  <style>
+    @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css');
+
+    html,
+    body {
+      height: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body {
+      background: #10131a;
+      color: #fff;
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+      padding-top: 76px;
+    }
+
+    .navbar {
+      background: rgba(24, 28, 36, 0.95) !important;
+      box-shadow: 0 2px 16px #0005;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1030;
+      transition: background 0.3s;
+    }
+
+    .navbar-brand .bi {
+      color: #0dcaf0 !important;
+    }
+
+    .navbar-nav .nav-link {
+      position: relative;
+    }
+
+    .navbar-nav .nav-link::after {
+      content: '';
+      display: block;
+      height: 3px;
+      width: 0;
+      background: linear-gradient(90deg, #0dcaf0 0%, #6f42c1 100%);
+      border-radius: 2px;
+      margin: 0 auto;
+      transition: width 0.3s cubic-bezier(.4, 2, .6, 1);
+    }
+
+    .navbar-nav .nav-link:hover::after,
+    .navbar-nav .nav-link.active::after {
+      width: 80%;
+    }
+
+    .navbar-nav .nav-link.active,
+    .navbar-nav .nav-link:focus,
+    .navbar-nav .nav-link[aria-current='page'] {
+      color: #0dcaf0 !important;
+      font-weight: 700;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #0dcaf0 !important;
+      text-shadow: 0 2px 8px #0dcaf055;
+    }
+
+    /* Mobile: make the active underline full-width and left-aligned for collapsed menu items */
+    @media (max-width: 767.98px) {
+      .navbar-nav .nav-link::after {
+        margin: 0; /* remove centering */
+        width: 0; /* default hidden */
+      }
+      .navbar-nav .nav-link:hover::after,
+      .navbar-nav .nav-link.active::after,
+      .navbar-nav .nav-link[aria-current='page']::after {
+        width: 100%;
+        margin-left: 0;
+        border-radius: 2px;
+      }
+    }
+
+    .btn-primary,
+    .btn-outline-primary {
+      border-radius: 2rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover,
+    .btn-outline-primary:hover,
+    .btn-dark:hover {
+      box-shadow: 0 4px 24px #0dcaf088;
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    /* From Uiverse.io by vikramsinghnegi */
+    .center-body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      background: #262626;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+    }
+
+    .loader-circle-9 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px;
+      height: 70px;
+      background: transparent;
+      border: 3px solid #3c3c3c;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 70px;
+      font-family: sans-serif;
+      font-size: 12px;
+      color: #00eaff;
+      text-transform: uppercase;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .loader-circle-9:before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      width: 100%;
+      height: 100%;
+      border: 3px solid transparent;
+      border-top: 3px solid #00eaff;
+      border-right: 3px solid #00eaff;
+      border-radius: 50%;
+      animation: animateC 2s linear infinite;
+    }
+
+    .loader-circle-9 span {
+      display: block;
+      position: absolute;
+      top: calc(50% - 2px);
+      left: 50%;
+      width: 50%;
+      height: 4px;
+      background: transparent;
+      transform-origin: left;
+      animation: animate 2s linear infinite;
+    }
+
+    .loader-circle-9 span:before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #00eaff;
+      top: -6px;
+      right: -8px;
+      box-shadow: 0 0 20px #00eaff;
+    }
+
+    @keyframes animateC {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes animate {
+      0% {
+        transform: rotate(45deg);
+      }
+
+      100% {
+        transform: rotate(405deg);
+      }
+    }
+
+    /* Theme toggle and support button styles */
+    #supportBtn {
+      border: 1.5px solid #0dcaf0;
+      background: rgba(13, 202, 240, 0.10);
+      color: #0dcaf0;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+
+    #supportBtn:hover {
+      background: #0dcaf0;
+      color: #fff;
+      box-shadow: 0 4px 16px #0dcaf088;
+    }
+
+    .btn-login-navbar {
+      background: linear-gradient(90deg, #0dcaf0 0%, #6f42c1 100%);
+      color: #fff !important;
+      border: none;
+      border-radius: 2rem;
+      font-weight: 700;
+      box-shadow: 0 4px 24px #0dcaf088;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+    }
+
+    .btn-login-navbar:hover,
+    .btn-login-navbar:focus {
+      background: linear-gradient(90deg, #6f42c1 0%, #0dcaf0 100%);
+      color: #fff !important;
+      box-shadow: 0 8px 32px #6f42c188;
+      transform: scale(1.06);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      background: linear-gradient(135deg, #0dcaf0 0%, #6f42c1 100%);
+      color: #fff;
+    }
+
+    .hero-section h1 {
+      font-size: 2.6rem;
+    }
+
+    .hero-section p {
+      color: #f8f9fa;
+    }
+    
+    /* About Hero */
+    .about-hero {
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                  url('assets/images/girl-store-woman-white-t-shirt.jpg') center/cover no-repeat;
+      color: #fff;
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .text-muted{
+      color: #fff;
+    }
+    /* Products Section */
+    .product-card {
+      transition: transform 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Responsive styles for product cards */
+    @media (max-width: 767.98px) {
+      .hero-section h1 {
+        font-size: 2rem !important;
+      }
+
+      .product-card {
+        padding: 16px 6px !important;
+      }
+
+      .product-card .card-img-top {
+        height: 120px !important;
+        width: 100% !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- From Uiverse.io by vikramsinghnegi -->
+  <div class="center-body" id="pageLoader">
+    <div class="loader-circle-9">
+      Loading
+      <span></span>
+    </div>
+  </div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <i class="bi bi-eye fs-2 me-2"></i>
+        <span class="fw-bold">Optimmystic</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="eye-test.html">Eye Test</a></li>
+            <li class="nav-item"><a class="nav-link" href="test-result.html">Test Results</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="product.html">Our Product</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+          </ul>
+        <div class="d-flex align-items-center ms-lg-3 gap-2">
+          <!-- Support Icon Button -->
+          <button id="supportBtn" class="btn btn-outline-info btn-sm rounded-circle" title="Support / Help"
+            style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;">
+            <i class="bi bi-question-circle-fill"></i>
+          </button>
+          <!-- Cart Button -->
+          <button class="btn btn-outline-light cart-btn" id="cartToggle" data-bs-toggle="offcanvas" data-bs-target="#cartCanvas" aria-controls="cartCanvas" title="Cart">
+            <i class="bi bi-cart-fill fs-5"></i>
+            <span class="cart-badge" id="cartCount">0</span>
+          </button>
+          <!-- Modern Login Button -->
+          <a href="login.html" class="btn btn-glass-main btn-login-navbar d-flex align-items-center gap-2 px-4 py-2"
+            style="font-weight:700;font-size:1.08rem;">
+            <i class="bi bi-box-arrow-in-right fs-5"></i>
+            <span>Login</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <div class="container">
+      <h1 class="fw-bold display-4">Our Products</h1>
+      <p class="lead">Discover frames, lenses and drops designed with precision and comfort. Shop curated collections made to protect and enhance your vision.</p>
+    </div>
+  </section>
+
+
+  <!-- Products Section (Tabbed) -->
+  <section class="container py-5" id="products">
+    <div class="d-flex align-items-center mb-4">
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" role="presentation"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-glasses" type="button" role="tab">Glasses</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-lenses" type="button" role="tab">Lenses</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-drops" type="button" role="tab">Eye Drops</button></li>
+        <li class="nav-item" role="presentation"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-ointments" type="button" role="tab">Ointments</button></li>
+      </ul>
+    </div>
+
+    <div class="tab-content">
+      <!-- Glasses -->
+      <div class="tab-pane fade show active" id="tab-glasses" role="tabpanel">
+        <div class="row g-4">
+          <!-- 12 glasses cards -->
+          <!-- We'll reuse images if necessary; ensure names exist in assets/images -->
+          <!-- Generate 12 cards -->
+          <!-- Auto-generated glass cards -->
+          <!-- We'll use images named glasses1.jpg .. glasses6.jpg and repeat to make 12 -->
+          <!-- 12 glass items -->
+          <script type="text/template" id="tpl-glass-cards">
+          </script>
+        </div>
+      </div>
+
+      <!-- Lenses -->
+      <div class="tab-pane fade" id="tab-lenses" role="tabpanel">
+        <div class="row g-4">
+          ${'<!--CARDS-LENSES-->'}
+        </div>
+      </div>
+
+      <!-- Drops -->
+      <div class="tab-pane fade" id="tab-drops" role="tabpanel">
+        <div class="row g-4">
+          ${'<!--CARDS-DROPS-->'}
+        </div>
+      </div>
+
+      <!-- Ointments -->
+      <div class="tab-pane fade" id="tab-ointments" role="tabpanel">
+        <div class="row g-4">
+          ${'<!--CARDS-OINTMENTS-->'}
+        </div>
+      </div>
+
+      <!-- Supplements -->
+      <!-- <div class="tab-pane fade" id="tab-supplements" role="tabpanel">
+        <div class="row g-4">
+        </div>
+      </div> -->
+    </div>
+  </section>
+
+  <!-- Offcanvas Cart -->
+  <div class="offcanvas offcanvas-end cart-canvas text-light" tabindex="-1" id="cartCanvas" aria-labelledby="cartCanvasLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="cartCanvasLabel">Your Cart</h5>
+      <!-- Custom white close icon to ensure visibility on dark gradient -->
+      <button type="button" class="btn-close btn-close-custom" data-bs-dismiss="offcanvas" aria-label="Close">
+        <svg viewBox="0 0 16 16" width="18" height="18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <path fill="#ffffff" d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.75.75 0 1 1 1.06 1.06L9.06 8l3.22 3.22a.75.75 0 0 1-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 1 1-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06z"/>
+        </svg>
+      </button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+      <div id="cartItems" class="mb-3"></div>
+      <div class="mt-auto">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <strong>Total</strong>
+          <span id="cartTotal" class="product-price">$0.00</span>
+        </div>
+        <div class="d-flex gap-2">
+          <button id="clearCart" class="btn btn-outline-danger w-50">Clear</button>
+          <button id="checkoutBtn" class="btn btn-primary w-50">Checkout</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Responsive styles for product cards -->
+  <style>
+    .product-card .card-img-top {
+      border-radius: 0.5rem;
+    }
+
+    .btn-product {
+      border-radius: 2rem;
+      font-weight: 600;
+      background: linear-gradient(90deg, #0dcaf0 0%, #6f42c1 100%);
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 24px #0dcaf088;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+      padding: 0.6rem 2rem;
+    }
+
+    .btn-product:hover {
+      background: linear-gradient(90deg, #6f42c1 0%, #0dcaf0 100%);
+      color: #fff;
+      transform: scale(1.06);
+      box-shadow: 0 8px 32px #6f42c188;
+    }
+    /* Tabs & product grid */
+    .nav-tabs .nav-link {
+      color: #cfeff8;
+      border: none;
+      padding: .75rem 1.1rem;
+      border-radius: .75rem;
+      background: rgba(255,255,255,0.02);
+      margin-right: .5rem;
+    }
+    .nav-tabs .nav-link.active {
+      background: linear-gradient(90deg,#0dcaf0 0%,#6f42c1 100%);
+      color: #fff;
+      box-shadow: 0 8px 30px rgba(111,66,193,0.12);
+    }
+    .product-price {
+      font-weight: 800;
+      color: #0dcaf0;
+      font-size: 1.05rem;
+    }
+    .card .card-body { min-height: 160px; }
+    /* Cart badge */
+    .cart-btn { position: relative; }
+    .cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: #0dcaf0;
+      color: #041018;
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      border-radius: 50%;
+      box-shadow: 0 6px 18px rgba(13,202,240,0.12);
+      animation: badgePulse 1600ms infinite;
+    }
+
+    @keyframes badgePulse {
+      0% { transform: scale(1); box-shadow: 0 6px 18px rgba(13,202,240,0.12); }
+      50% { transform: scale(1.08); box-shadow: 0 10px 26px rgba(13,202,240,0.16); }
+      100% { transform: scale(1); box-shadow: 0 6px 18px rgba(13,202,240,0.12); }
+    }
+    /* Themed cart offcanvas */
+    .cart-btn {
+      background: linear-gradient(90deg,#0dcaf0 0%,#6f42c1 100%);
+      color: #041018;
+      border: none;
+      box-shadow: 0 8px 28px rgba(111,66,193,0.16);
+      border-radius: .8rem;
+      padding: .45rem .7rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+    }
+  .cart-btn i { color: #fff; }
+    .cart-btn:focus { outline: 3px solid rgba(13,202,240,0.12); }
+    .cart-btn:hover { transform: translateY(-2px) scale(1.01); }
+
+    .offcanvas.cart-canvas {
+      background: linear-gradient(180deg,#0b0d11 0%, #0f1114 100%);
+      color: #e9f7fb;
+    }
+
+    .offcanvas.cart-canvas .offcanvas-header {
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      background: linear-gradient(90deg, rgba(13,202,240,0.03), rgba(111,66,193,0.03));
+    }
+
+    .offcanvas.cart-canvas .offcanvas-header .offcanvas-title {
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .offcanvas.cart-canvas .offcanvas-body {
+      color: #dfeff6;
+      background: transparent;
+    }
+
+    /* Make the offcanvas close (X) white */
+    .offcanvas.cart-canvas .btn-close {
+      --bs-btn-close-color: #fff;
+      opacity: 0.95;
+    }
+    .offcanvas.cart-canvas .btn-close:focus { box-shadow: 0 0 0 3px rgba(13,202,240,0.12); }
+    /* Ensure btn-close with text-reset is white inside the themed cart */
+    .offcanvas.cart-canvas .btn-close.text-reset {
+      --bs-btn-close-color: #fff !important;
+      color: #fff !important;
+      opacity: 0.98;
+    }
+    .offcanvas.cart-canvas .btn-close-custom {
+      background: transparent;
+      border: none;
+      padding: .25rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .offcanvas.cart-canvas .btn-close-custom svg path { filter: drop-shadow(0 2px 6px rgba(0,0,0,0.45)); }
+
+    .offcanvas.cart-canvas .btn-primary {
+      background: linear-gradient(90deg,#0dcaf0 0%,#6f42c1 100%);
+      border: none;
+      color: #fff;
+      font-weight: 800;
+      box-shadow: 0 10px 30px rgba(111,66,193,0.12);
+    }
+
+    .offcanvas.cart-canvas .btn-outline-danger {
+      color: #ffb3b3;
+      border-color: rgba(255,80,80,0.12);
+    }
+       footer {
+      background: #181c24;
+      color: #aaa;
+    }
+
+    a {
+      color: #0dcaf0;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: #fff;
+    }
+  </style>
+
+    <!-- Footer -->
+  <footer class="py-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h5>Optimmystic</h5>
+          <p class="mb-0">&copy; 2025 Optimmystic. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-md-end mt-3 mt-md-0">
+          <a href="contact.html" class="text-decoration-none me-3">Contact</a>
+          <a href="#" class="text-decoration-none me-3">Privacy Policy</a>
+          <a href="#" class="text-decoration-none">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Hide loader when page is fully loaded
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      var loader = document.getElementById('pageLoader');
+      if (loader) loader.style.opacity = '0';
+      setTimeout(function () {
+        if (loader) loader.style.display = 'none';
+      }, 400);
+    }, 400); // slight delay for smoothness
+  });
+
+  // Support button logic
+  const supportBtn = document.getElementById('supportBtn');
+  if (supportBtn) {
+    supportBtn.addEventListener('click', function () {
+      alert('For support, please email us at support@optimmystic.com or use the contact page.');
+    });
+  }
+  
+  /* ====== Products + Cart JS ====== */
+  (function(){
+    const productsRoot = document.getElementById('products');
+    const cartKey = 'optimmystic_cart_v1';
+
+    // helper: sample data generator
+    function makeProducts(prefix, count, imagePrefix){
+      const items = [];
+      for(let i=1;i<=count;i++){
+        const id = `${prefix}-${i}`;
+        items.push({ id, title: `${prefix.charAt(0).toUpperCase()+prefix.slice(1)} ${i}`, price: (9.99 + (i%5)*5).toFixed(2), img: `assets/images/${imagePrefix}${(i%6||6)}.jpg` });
+      }
+      return items;
+    }
+
+    const glasses = makeProducts('glasses',6,'glasses');
+
+    glasses[0].img = 'assets/images/Blue Light Glasses.jpg';
+    glasses[0].title = 'Blue Light Glasses';
+    glasses[0].description = 'Protect your eyes from harmful blue light with these stylish glasses.';
+    glasses[1].img = 'assets/images/Prescription Glasses.jpg';
+    glasses[1].title = 'Prescription Glasses';
+    glasses[1].description = 'Custom prescription glasses tailored to your vision needs.';
+    glasses[2].img = 'assets/images/ReadingGlasses.jpg';
+    glasses[2].title = 'Reading Glasses';
+    glasses[2].description = 'Comfortable reading glasses for clear close-up vision.';
+    glasses[3].img = 'assets/images/Sunglasses.jpg';
+    glasses[3].title = 'Sun Glasses';
+    glasses[3].description = 'Stylish sun glasses to protect your eyes from the sun.';
+    glasses[4].img = 'assets/images/ComputerGlasses.webp.';
+    glasses[4].title = 'Computer Glasses';
+    glasses[4].description = 'Stylish Sports glasses to protect your eyes from the sun.';
+    glasses[5].img = 'assets/images/Sports Glasses.jpg';
+    glasses[5].title = 'Sports Glasses';
+    glasses[5].description = 'Stylish Sports glasses to protect your eyes from the sun.';
+    
+    const lenses = makeProducts('lenses',6,'lenses');
+
+    lenses[0].img = 'assets/images/Daily Contact Lenses.jpg';
+    lenses[0].title = 'Daily Contact Lenses';
+    lenses[0].description = 'Comfortable and breathable lenses designed for all-day clear vision and daily convenience.';
+    lenses[1].img = 'assets/images/Rigid Gas Permeable.avif';
+    lenses[1].title = 'Rigid Gas Permeable (RGP) Lenses';
+    lenses[1].description = 'Durable lenses that provide clear, sharp vision and allow oxygen to pass through for healthier eyes.';
+    lenses[2].img = 'assets/images/Extended Wear Lenses.avif';
+    lenses[2].title = 'Extended Wear Lenses';
+    lenses[2].description = 'Designed for continuous use, allowing you to wear them day and night for up to several days with clear, comfortable vision.';
+    lenses[3].img = 'assets/images/Prescription (Vision Correction) Lenses.jpg';
+    lenses[3].title = 'Extended Wear Lenses';
+    lenses[3].description = 'Custom-made lenses designed to correct vision problems like nearsightedness, farsightedness, or astigmatism for clear and precise sight.';
+    lenses[4].img = 'assets/images/Multifocal Bifocal Lenses.avif';
+    lenses[4].title = 'Multifocal / Bifocal Lenses';
+    lenses[4].description = 'Advanced lenses that provide clear vision at multiple distances, helping you see near, far, and everything in between without switching glasses.';
+    lenses[5].img = 'assets/images/Toric Lenses.webp';
+    lenses[5].title = 'Multifocal / Bifocal Lenses';
+    lenses[5].description = 'Specially designed contact lenses that correct astigmatism, providing sharp and stable vision with enhanced comfort';
+
+    const drops = makeProducts('drops',6,'drops');
+
+    drops[0].img = 'assets/images/Lubricating Artificial Tears.jpg';
+    drops[0].title = 'Lubricating / Artificial Tears';
+    drops[0].description = 'Soothing eye drops that relieve dryness, irritation, and discomfort, keeping your eyes moist and refreshed throughout the day.';
+    drops[1].img = 'assets/images/Antibacterial Eye Drops.webp';
+    drops[1].title = 'Antibacterial Eye Drops';
+    drops[1].description = 'Medicated drops formulated to treat and prevent bacterial eye infections, promoting quick relief and faster healing.';
+    drops[2].img = 'assets/images/Anti-Allergic Antihistamine Drops.webp';
+    drops[2].title = 'Anti-Allergic / Antihistamine Drops';
+    drops[2].description = 'Eye drops that relieve itching, redness, and irritation caused by allergies, providing fast and long-lasting comfort.';
+    drops[3].img = 'assets/images/Decongestant Redness-Relief Drops.webp';
+    drops[3].title = 'Decongestant / Redness-Relief Drops';
+    drops[3].description = 'Eye drops that quickly reduce redness and irritation by constricting blood vessels, leaving your eyes looking clear and refreshed.';
+    drops[4].img = 'assets/images/Glaucoma Eye Drops.jpeg';
+    drops[4].title = 'Glaucoma Eye Drops';
+    drops[4].description = 'Medicated drops that help lower eye pressure to prevent optic nerve damage and protect vision in glaucoma patients.';
+    drops[5].img = 'assets/images/Antifungal Antiviral Drops.jpeg';
+    drops[5].title = 'Antifungal / Antiviral Drops';
+    drops[5].description = 'Specialized eye drops that treat fungal or viral eye infections, helping reduce inflammation and promote faster healing.';
+  
+  const ointments = makeProducts('ointment',6,'ointment');
+
+    ointments[0].img = 'assets/images/Antibiotic Ointments.png';
+    ointments[0].title = 'Antibiotic Ointments';
+    ointments[0].description = 'Medicated eye ointments that treat and prevent bacterial infections, providing soothing protection and promoting faster recovery.';
+    ointments[1].img = 'assets/images/Antiviral Ointments.jpg';
+    ointments[1].title = 'Antiviral Ointments';
+    ointments[1].description = 'Specialized ointments that treat viral eye infections by reducing irritation, controlling infection spread, and supporting faster healing.';
+    ointments[2].img = 'assets/images/Antifungal Ointments.jpg';
+    ointments[2].title = 'Antifungal Ointments';
+    ointments[2].description = 'Medicated ointments formulated to treat fungal eye infections, helping reduce inflammation and promote effective healing.';
+    ointments[3].img = 'assets/images/Anti-Inflammatory Steroid Ointments.jpg';
+    ointments[3].title = 'Anti-Inflammatory / Steroid Ointments';
+    ointments[3].description = 'Ointments that reduce eye swelling, redness, and irritation caused by inflammation or injury, providing quick relief and faster healing.';
+    ointments[4].img = 'assets/images/Lubricating Moisturizing Ointments.webp';
+    ointments[4].title = 'Lubricating / Moisturizing Ointments';
+    ointments[4].description = 'Medicated drops that help lower eye pressure to prevent optic nerve damage and protect vision in glaucoma patients.';
+    ointments[5].img = 'assets/images/Combination Ointments.jpg';
+    ointments[5].title = 'Combination Ointments';
+    ointments[5].description = 'Multi-action ointments that combine antibiotics, antivirals, or steroids to treat infections, reduce inflammation, and promote faster eye healing.';
+
+    function renderCards(list, containerId){
+      const container = document.querySelector(containerId + ' .row');
+      if(!container) return;
+      container.innerHTML = '';
+      list.forEach(p => {
+        const col = document.createElement('div');
+        col.className = 'col-sm-6 col-md-4';
+        col.innerHTML = `
+          <div class="card product-card h-100 text-center bg-dark text-light border-0 shadow-lg">
+            <img src="${p.img}" class="card-img-top" alt="${p.title}" style="width:100%;height:180px;object-fit:cover;border-radius:0.5rem;" onerror="this.onerror=null;this.src='assets/images/download.webp'">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title fw-bold">${p.title}</h5>
+          <p class="card-text">${p.description || `High quality ${p.title} crafted for comfort and clarity.`}</p>
+              <div class="mt-auto d-flex justify-content-between align-items-center">
+                <div class="product-price">$${p.price}</div>
+                <button class="btn btn-sm btn-product add-to-cart" data-id="${p.id}" data-title="${p.title}" data-price="${p.price}" data-img="${p.img}">Add</button>
+              </div>
+            </div>
+          </div>`;
+        container.appendChild(col);
+      });
+    }
+
+  // render all categories
+  renderCards(glasses,'#tab-glasses');
+  renderCards(lenses,'#tab-lenses');
+  renderCards(drops,'#tab-drops');
+  renderCards(ointments,'#tab-ointments');
+  // renderCards(supplements,'#tab-supplements');
+
+    // Cart operations
+    function loadCart(){
+      try{ return JSON.parse(localStorage.getItem(cartKey))||[]; }catch(e){return []}
+    }
+    function saveCart(cart){ localStorage.setItem(cartKey, JSON.stringify(cart)); }
+    function cartCount(){ const c=loadCart(); return c.reduce((s,i)=>s+i.qty,0); }
+
+    function updateBadge(){ document.getElementById('cartCount').textContent = cartCount(); }
+
+    function addToCart(item){ const cart=loadCart(); const idx=cart.findIndex(x=>x.id===item.id); if(idx>-1){cart[idx].qty+=1;}else{item.qty=1;cart.push(item);} saveCart(cart); updateBadge(); }
+
+    document.body.addEventListener('click', function(e){
+      const t = e.target.closest('.add-to-cart');
+      if(t){
+        const item = { id: t.dataset.id, title: t.dataset.title, price: parseFloat(t.dataset.price), img: t.dataset.img };
+        addToCart(item);
+        // brief feedback
+        t.textContent = 'Added';
+        setTimeout(()=>{ t.textContent='Add'; },900);
+      }
+    });
+
+    // render cart drawer
+    function renderCart(){
+      const cart = loadCart();
+      const container = document.getElementById('cartItems');
+      container.innerHTML = '';
+      if(cart.length===0){ container.innerHTML = '<div class="text-muted">Your cart is empty.</div>'; document.getElementById('cartTotal').textContent = '$0.00'; return; }
+      cart.forEach(item=>{
+        const row = document.createElement('div'); row.className='d-flex align-items-center gap-3 mb-3';
+        row.innerHTML = `
+          <img src="${item.img}" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:.5rem;">
+          <div class="flex-grow-1">
+            <div class="fw-bold">${item.title}</div>
+            <div class="text-muted small">Qty: ${item.qty}</div>
+          </div>
+          <div class="text-end">
+            <div class="fw-bold">$${(item.price*item.qty).toFixed(2)}</div>
+            <button class="btn btn-sm btn-link text-danger remove-item" data-id="${item.id}">Remove</button>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+      const total = cart.reduce((s,i)=>s + i.price*i.qty,0);
+      document.getElementById('cartTotal').textContent = `$${total.toFixed(2)}`;
+    }
+
+    // open cart and render
+    const cartCanvas = document.getElementById('cartCanvas');
+    if(cartCanvas){
+      cartCanvas.addEventListener('show.bs.offcanvas', renderCart);
+    }
+
+    // remove handlers
+    document.getElementById('cartItems').addEventListener('click', function(e){
+      const btn = e.target.closest('.remove-item'); if(!btn) return; const id=btn.dataset.id; const cart=loadCart(); const idx=cart.findIndex(x=>x.id===id); if(idx>-1){ cart.splice(idx,1); saveCart(cart); renderCart(); updateBadge(); }
+    });
+
+    // clear/checkout
+    document.getElementById('clearCart').addEventListener('click', function(){ localStorage.removeItem(cartKey); updateBadge(); renderCart(); });
+    document.getElementById('checkoutBtn').addEventListener('click', function(){ alert('Checkout placeholder — implement payment flow.'); });
+
+    // initial badge
+    updateBadge();
+  })();
+</script>
+
+</html>

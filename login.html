@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Signup | Optimmystic</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+      body {
+        min-height: 100vh;
+        background: linear-gradient(120deg, #10131a 60%, #0dcaf0 100%);
+        color: #fff;
+        font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .auth-card-glass {
+        background: rgba(24,28,36,0.92);
+        border-radius: 2rem;
+        box-shadow: 0 8px 32px #0dcaf055, 0 0 0 6px #0dcaf033;
+        border: 2.5px solid transparent;
+        background-clip: padding-box;
+        backdrop-filter: blur(12px) saturate(140%);
+        max-width: 410px;
+        width: 100%;
+        margin: 2rem auto;
+        padding: 2.5rem 2rem 2rem 2rem;
+        position: relative;
+        animation: float-cta 3.5s ease-in-out infinite;
+      }
+      @keyframes float-cta {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+      .auth-glow-icon {
+        font-size: 3.2rem;
+        color: #0dcaf0;
+        filter: drop-shadow(0 0 24px #0dcaf0cc);
+        margin-bottom: 0.5rem;
+        animation: glow-cta 2.5s alternate infinite;
+      }
+      @keyframes glow-cta {
+        0% { filter: drop-shadow(0 0 8px #0dcaf0cc); }
+        100% { filter: drop-shadow(0 0 32px #0dcaf0cc); }
+      }
+      .auth-title {
+        font-weight: 700;
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        letter-spacing: 0.5px;
+      }
+      .form-label {
+        font-weight: 500;
+        color: #b8eaff;
+      }
+      .form-control, .form-control:focus {
+        background: #232526;
+        color: #fff;
+        border: 1.5px solid #0dcaf033;
+        border-radius: 1.2rem;
+        box-shadow: none;
+        font-size: 1.08rem;
+        padding: 0.7rem 1.1rem;
+        transition: border-color 0.2s;
+      }
+      .form-control:focus {
+        border-color: #0dcaf0;
+        box-shadow: 0 0 0 2px #0dcaf055;
+      }
+      .toggle-link {
+        cursor: pointer;
+        color: #0dcaf0;
+        font-weight: 600;
+        margin-left: 0.3rem;
+        transition: color 0.2s;
+      }
+      .toggle-link:hover {
+        color: #6f42c1;
+        text-decoration: underline;
+      }
+      .toggle-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+      .btn-auth-main {
+        background: linear-gradient(90deg, #0dcaf0 0%, #6f42c1 100%);
+        color: #fff !important;
+        border: none;
+        border-radius: 2rem;
+        font-weight: 700;
+        font-size: 1.15rem;
+        box-shadow: 0 4px 24px #0dcaf088;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+      }
+      .btn-auth-main:hover, .btn-auth-main:focus {
+        background: linear-gradient(90deg, #6f42c1 0%, #0dcaf0 100%);
+        color: #fff !important;
+        box-shadow: 0 8px 32px #6f42c188;
+        transform: scale(1.04);
+      }
+      .btn-outline-auth {
+        background: transparent;
+        border: 1.5px solid #0dcaf0;
+        color: #0dcaf0 !important;
+        border-radius: 2rem;
+        font-weight: 700;
+        font-size: 1.15rem;
+        box-shadow: 0 2px 16px #0dcaf022;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+      }
+      .btn-outline-auth:hover, .btn-outline-auth:focus {
+        background: rgba(13, 202, 240, 0.18);
+        color: #fff !important;
+        border-color: #6f42c1;
+        box-shadow: 0 6px 24px #0dcaf088;
+        transform: scale(1.04);
+      }
+      .show-hide-pass {
+        position: absolute;
+        right: 1.2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #0dcaf0;
+        cursor: pointer;
+        font-size: 1.2rem;
+        opacity: 0.8;
+        transition: color 0.2s;
+      }
+      .show-hide-pass:hover {
+        color: #6f42c1;
+        opacity: 1;
+      }
+      .back-link {
+        color: #b8eaff;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: color 0.2s;
+      }
+      .back-link:hover {
+        color: #0dcaf0;
+        text-decoration: underline;
+      }
+      @media (max-width: 600px) {
+        .auth-card-glass { padding: 1.5rem 0.5rem; }
+        .auth-title { font-size: 1.3rem; }
+      }
+    </style>
+</head>
+<body>
+  <div class="container d-flex align-items-center justify-content-center min-vh-100">
+    <div class="auth-card-glass">
+      <div class="text-center mb-4">
+        <i class="bi bi-eye-fill auth-glow-icon"></i>
+        <div class="auth-title">Welcome to Optimmystic</div>
+        <div class="text-secondary mb-2" style="font-size:1.08rem;">AI-powered vision care for everyone</div>
+      </div>
+      <form id="authForm" autocomplete="off">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" required placeholder="Enter your email">
+        </div>
+        <div class="mb-3 position-relative">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" required placeholder="Enter your password">
+          <span class="show-hide-pass" id="togglePassword" title="Show/Hide Password"><i class="bi bi-eye-slash"></i></span>
+        </div>
+        <button type="submit" class="btn btn-auth-main w-100 mb-2" id="loginBtn"><i class="bi bi-box-arrow-in-right"></i> Login</button>
+        <button type="button" class="btn btn-outline-auth w-100 d-none" id="signupBtn"><i class="bi bi-person-plus"></i> Signup</button>
+      </form>
+      <div class="toggle-row">
+        <span id="toggleText">Don't have an account?</span>
+        <span class="toggle-link" id="toggleAuth">Signup</span>
+      </div>
+      <div class="text-center mt-2">
+        <a href="index.html" class="back-link"><i class="bi bi-arrow-left"></i> Back to Home</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Toggle Login/Signup
+    const loginBtn = document.getElementById('loginBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const toggleAuth = document.getElementById('toggleAuth');
+    const toggleText = document.getElementById('toggleText');
+    let isLogin = true;
+    toggleAuth.addEventListener('click', () => {
+      isLogin = !isLogin;
+      if(isLogin) {
+        loginBtn.classList.remove('d-none');
+        signupBtn.classList.add('d-none');
+        toggleText.textContent = "Don't have an account?";
+        toggleAuth.textContent = "Signup";
+      } else {
+        loginBtn.classList.add('d-none');
+        signupBtn.classList.remove('d-none');
+        toggleText.textContent = "Already have an account?";
+        toggleAuth.textContent = "Login";
+      }
+    });
+    // Show/Hide Password
+    const passwordInput = document.getElementById('password');
+    const togglePassword = document.getElementById('togglePassword');
+    togglePassword.addEventListener('click', function() {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      this.innerHTML = type === 'password' ? '<i class="bi bi-eye-slash"></i>' : '<i class="bi bi-eye"></i>';
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

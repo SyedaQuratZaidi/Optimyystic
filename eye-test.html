@@ -1,0 +1,2808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimmystic | Eye-Test</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css">
+    <style>
+        @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css');
+        html, body {
+          height: 100%;
+          min-height: 100vh;
+        }
+        body {
+          background: #10131a;
+          color: #fff;
+          font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+          padding-top: 76px; 
+          overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        /* Remove unwanted horizontal scroll on mobile/tab */
+        html, body {
+          overflow-x: hidden !important;
+        }
+
+        .navbar {
+          background: rgba(24,28,36,0.95) !important;
+          box-shadow: 0 2px 16px #0005;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 1030;
+          transition: background 0.3s;
+        }
+        .navbar-brand .bi {
+           color: #0dcaf0 !important;
+          }
+
+          .navbar-nav .nav-link {
+          position: relative;
+        }
+        .navbar-nav .nav-link::after {
+          content: '';
+          display: block;
+          height: 3px;
+          width: 0;
+          background: linear-gradient(90deg, #0dcaf0 0%, #6f42c1 100%);
+          border-radius: 2px;
+          margin: 0 auto;
+          transition: width 0.3s cubic-bezier(.4,2,.6,1);
+        }
+        .navbar-nav .nav-link:hover::after, .navbar-nav .nav-link.active::after {
+          width: 80%;
+        }
+
+        /* Mobile: make the active underline full-width and left-aligned for collapsed menu items */
+        @media (max-width: 767.98px) {
+          .navbar-nav .nav-link::after {
+            margin: 0; /* remove centering */
+            width: 0; /* default hidden */
+          }
+          .navbar-nav .nav-link:hover::after,
+          .navbar-nav .nav-link.active::after,
+          .navbar-nav .nav-link[aria-current='page']::after {
+            width: 100%;
+            margin-left: 0;
+            border-radius: 2px;
+          }
+        }
+        .navbar-nav .nav-link.active, .navbar-nav .nav-link:focus, .navbar-nav .nav-link[aria-current='page'] {
+          color: #0dcaf0 !important;
+          font-weight: 700;
+        }
+        .navbar-nav .nav-link:hover {
+          color: #0dcaf0 !important;
+          text-shadow: 0 2px 8px #0dcaf055;
+        }
+        .btn-primary,
+         .btn-outline-primary {
+           border-radius: 2rem;
+           font-weight: 600;
+           letter-spacing: 0.5px;
+           transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+          }
+        .btn-primary:hover,
+        .btn-outline-primary:hover,
+        .btn-dark:hover {
+           box-shadow: 0 4px 24px #0dcaf088; 
+           transform: translateY(-2px) scale(1.03);
+          }
+
+        /* From Uiverse.io by vikramsinghnegi */ 
+        .center-body {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          background: #262626;
+          position: fixed;
+          top: 0;
+          left: 0;
+          z-index: 9999;
+        }
+        .loader-circle-9 {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 70px;
+          height: 70px;
+          background: transparent;
+          border: 3px solid #3c3c3c;
+          border-radius: 50%;
+          text-align: center;
+          line-height: 70px;
+          font-family: sans-serif;
+          font-size: 12px;
+          color: #00eaff;
+          text-transform: uppercase;
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        .loader-circle-9:before {
+          content: "";
+          position: absolute;
+          top: -3px;
+          left: -3px;
+          width: 100%;
+          height: 100%;
+          border: 3px solid transparent;
+          border-top: 3px solid #00eaff;
+          border-right: 3px solid #00eaff;
+          border-radius: 50%;
+          animation: animateC 2s linear infinite;
+        }
+        .loader-circle-9 span {
+          display: block;
+          position: absolute;
+          top: calc(50% - 2px);
+          left: 50%;
+          width: 50%;
+          height: 4px;
+          background: transparent;
+          transform-origin: left;
+          animation: animate 2s linear infinite;
+        }
+        .loader-circle-9 span:before {
+          content: "";
+          position: absolute;
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background: #00eaff;
+          top: -6px;
+          right: -8px;
+          box-shadow: 0 0 20px #00eaff;
+        }
+        @keyframes animateC {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+        @keyframes animate {
+          0% { transform: rotate(45deg); }
+          100% { transform: rotate(405deg); }
+        }
+
+        /* Remove light-mode CSS and theme toggle styles */
+        #supportBtn {
+          border: 1.5px solid #0dcaf0;
+          background: rgba(13,202,240,0.10);
+          color: #0dcaf0;
+          transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+        #supportBtn:hover {
+          background: #0dcaf0;
+          color: #fff;
+          box-shadow: 0 4px 16px #0dcaf088;
+        }
+        .btn-login-navbar {
+      background: linear-gradient(90deg, #0dcaf0 0%, #6f42c1 100%);
+      color: #fff !important;
+      border: none;
+      border-radius: 2rem;
+      font-weight: 700;
+      box-shadow: 0 4px 24px #0dcaf088;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.18s;
+    }
+    .btn-login-navbar:hover, .btn-login-navbar:focus {
+      background: linear-gradient(90deg, #6f42c1 0%, #0dcaf0 100%);
+      color: #fff !important;
+      box-shadow: 0 8px 32px #6f42c188;
+      transform: scale(1.06);
+      }
+
+    /* Theme button used across test controls */
+    .btn-theme {
+      background: linear-gradient(90deg, #0dcaf0 0%, #6f42c1 100%);
+      color: #fff !important;
+      border: none;
+      box-shadow: 0 6px 20px rgba(111,66,193,0.15);
+      border-radius: 0.6rem;
+    }
+    .btn-theme:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 10px 30px rgba(111,66,193,0.18);
+    }
+
+      .text-gradient {
+        background: linear-gradient(90deg, #0dcaf0 0%, #6f42c1 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        /* color: transparent; */
+      }
+      .text-muted{
+        color: #fff !important;
+      }
+      /* Eye Test Specific Styles */
+      .eye-test-container {
+        background: rgba(24,28,36,0.8);
+        border-radius: 20px;
+        border: 1px solid rgba(13,202,240,0.2);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      }
+
+      /* Patient info card - improve stacking and button on small screens */
+      @media (max-width: 576px) {
+        /* Compact inline patient card: hide text and keep only the action button full-width */
+        #inlinePatientForm .d-flex,
+        #inlinePatientFormColor .d-flex,
+        #inlinePatientFormQuiz .d-flex {
+          flex-direction: row !important;
+          align-items: center !important;
+          gap: 0.25rem;
+        }
+        #inlinePatientForm h6, #inlinePatientForm p.small,
+        #inlinePatientFormColor h6, #inlinePatientFormColor p.small,
+        #inlinePatientFormQuiz h6, #inlinePatientFormQuiz p.small {
+          display: none !important;
+        }
+        #inlinePatientForm, #inlinePatientFormColor, #inlinePatientFormQuiz {
+          padding: 0.25rem 0.5rem;
+        }
+        /* Hide patient info action buttons on mobile per request */
+        #inlinePatientForm button, #inlinePatientFormColor button, #inlinePatientFormQuiz button,
+        #openPatientModalMain, #openPatientModalColor, #openPatientModalQuiz {
+          display: none !important;
+        }
+      }
+
+      .camera-container {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        background: #000;
+        border: 2px solid rgba(13,202,240,0.3);
+      }
+
+      #videoElement {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        max-height: 60vh;
+        object-fit: cover;
+      }
+
+      .camera-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        height: 200px;
+        border: 3px solid #0dcaf0;
+        border-radius: 50%;
+        pointer-events: none;
+        box-shadow: 0 0 20px rgba(13,202,240,0.5);
+      }
+
+      .camera-controls {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 18px !important;
+        z-index: 10;
+      }
+
+      .capture-btn {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(45deg, #0dcaf0, #6f42c1);
+        border: none;
+        color: white;
+        font-size: 24px;
+        box-shadow: 0 4px 20px rgba(13,202,240,0.4);
+        transition: all 0.3s ease;
+      }
+
+      .capture-btn:hover:not(:disabled) {
+        transform: scale(1.1);
+        box-shadow: 0 6px 25px rgba(13,202,240,0.6);
+      }
+
+      .capture-btn:disabled {
+        background: linear-gradient(45deg, #6c757d, #495057);
+        box-shadow: 0 2px 10px rgba(108,117,125,0.3);
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+
+      /* New Test Features Styles */
+      .test-features {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .color-test-card {
+        background: rgba(24,28,36,0.85);
+        border: 1px solid rgba(13,202,240,0.25);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+      }
+
+      .color-test-card:hover {
+        border-color: rgba(13,202,240,0.5);
+        box-shadow: 0 5px 20px rgba(13,202,240,0.2);
+      }
+
+      .ishihara-plate {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f8f9fa;
+        border-radius: 50%;
+        padding: 10px;
+        margin: 0 auto;
+        width: 220px;
+        height: 220px;
+      }
+
+      .color-answer {
+        transition: all 0.3s ease;
+      }
+
+      .color-answer.selected {
+        background: linear-gradient(45deg, #0dcaf0, #6f42c1) !important;
+        border-color: #0dcaf0 !important;
+        color: white !important;
+      }
+
+      .question-card {
+        background: rgba(24,28,36,0.85);
+        border: 1px solid rgba(13,202,240,0.25);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+      }
+
+      .quiz-question {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: all 0.5s ease;
+      }
+
+      .quiz-question.active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .form-check-input:checked {
+        background-color: #0dcaf0;
+        border-color: #0dcaf0;
+      }
+
+      .quiz-progress {
+        height: 6px;
+        background: rgba(13,202,240,0.2);
+        border-radius: 3px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+      }
+
+      .quiz-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #0dcaf0, #6f42c1);
+        transition: width 0.5s ease;
+        border-radius: 3px;
+      }
+
+      .test-section {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Tutorial Modal Styles */
+      .tutorial-progress {
+        height: 8px;
+        background: rgba(13,202,240,0.2);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .tutorial-progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #0dcaf0, #6f42c1);
+        transition: width 0.5s ease;
+        border-radius: 4px;
+      }
+
+      .step-number {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(45deg, #0dcaf0, #6f42c1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: white;
+      }
+
+      .tutorial-step {
+        min-height: 400px;
+        animation: slideIn 0.5s ease-in-out;
+      }
+
+      @keyframes slideIn {
+        from { opacity: 0; transform: translateX(30px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+
+      .test-type-demo {
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .test-type-demo:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 20px rgba(13,202,240,0.3);
+      }
+
+      .environment-tip {
+        text-align: center;
+        transition: all 0.3s ease;
+      }
+
+      .environment-tip:hover {
+        transform: translateY(-3px);
+      }
+
+      .camera-demo {
+        position: relative;
+      }
+
+      .camera-overlay-demo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        border: 3px dashed #0dcaf0;
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; }
+        100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      }
+
+      .analysis-icon {
+        width: 30px;
+        height: 30px;
+        background: rgba(13,202,240,0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .ai-demo {
+        position: relative;
+      }
+
+      .processing-animation {
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .upload-area {
+        border: 2px dashed rgba(13,202,240,0.5);
+        border-radius: 15px;
+        padding: 40px;
+        text-align: center;
+        transition: all 0.3s ease;
+        background: rgba(13,202,240,0.05);
+      }
+
+      .upload-area:hover {
+        border-color: #0dcaf0;
+        background: rgba(13,202,240,0.1);
+      }
+
+      .upload-area.dragover {
+        border-color: #0dcaf0;
+        background: rgba(13,202,240,0.15);
+        transform: scale(1.02);
+      }
+
+      .test-card {
+        background: rgba(24,28,36,0.6);
+        border: 1px solid rgba(13,202,240,0.2);
+        border-radius: 15px;
+        padding: 25px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .test-card:hover {
+        border-color: #0dcaf0;
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(13,202,240,0.2);
+      }
+
+      .test-card.active {
+        border-color: #0dcaf0;
+        background: rgba(13,202,240,0.1);
+      }
+
+      .progress-bar {
+        background: rgba(13,202,240,0.2);
+        border-radius: 10px;
+        height: 8px;
+        overflow: hidden;
+      }
+
+      .progress-fill {
+        background: linear-gradient(90deg, #0dcaf0, #6f42c1);
+        height: 100%;
+        border-radius: 10px;
+        transition: width 0.3s ease;
+      }
+
+      .result-card {
+        background: linear-gradient(135deg, rgba(13,202,240,0.1), rgba(111,66,193,0.1));
+        border: 1px solid rgba(13,202,240,0.3);
+        border-radius: 15px;
+        padding: 25px;
+      }
+
+      .eye-icon {
+        font-size: 3rem;
+        color: #0dcaf0;
+        margin-bottom: 15px;
+      }
+
+      .status-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 8px;
+      }
+
+      .status-good { background: #28a745; }
+      .status-warning { background: #ffc107; }
+      .status-poor { background: #dc3545; }
+
+      .modal-content {
+        background: #1a1d24;
+        border: 1px solid rgba(13,202,240,0.3);
+        border-radius: 15px;
+      }
+
+      .modal-body{
+        color: white;
+      }
+
+      .modal-header {
+        border-bottom: 1px solid rgba(13,202,240,0.2);
+      }
+
+      .modal-footer {
+        border-top: 1px solid rgba(13,202,240,0.2);
+      }
+
+      /* Feature icons hover effect - matches homepage */
+.eye-test-container .bi {
+  transition: transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.25s cubic-bezier(.4,2,.6,1), color 0.25s;
+  will-change: transform, box-shadow, color;
+}
+.eye-test-container .bi:hover {
+  transform: scale(1.22) rotate(-8deg);
+  box-shadow: 0 8px 32px #0dcaf088;
+  color: #6f42c1 !important;
+}
+
+
+      footer {
+      background: #181c24;
+      color: #aaa;
+    }
+
+    a {
+      color: #0dcaf0;
+      transition: color 0.2s;
+    }
+
+    a:hover {
+      color: #fff;
+    }
+
+    /* Hero section image/video responsiveness */
+    .hero-section img,
+    .hero-section video {
+      max-width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0 !important;
+    }
+
+    /* Mobile: Hero section text size and spacing */
+    @media (max-width: 575.98px) {
+      .hero-section h1 {
+        font-size: 2rem !important;
+        gap: 6px !important;
+      }
+      .hero-section p {
+        font-size: 1rem !important;
+      }
+    }
+
+    @media (max-width: 991.98px) {
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 0 !important;
+  }
+  .hero-video, .hero-img {
+    max-width: 100%;
+    height: auto !important;
+    border-radius: 1rem !important;
+  }
+  h1, .display-3, .display-5 {
+    font-size: 2rem !important;
+  }
+  .lead, p, .fs-5 {
+    font-size: 1rem !important;
+  }
+  .btn, .btn-lg, .btn-cta-glass-main {
+    font-size: 0.95rem !important;
+    padding: 0.5rem 1.2rem !important;
+  }
+}
+
+        /* Camera controls button spacing */
+.camera-controls {
+  gap: 18px !important;
+}
+
+/* Start/Stop Camera buttons spacing */
+#testArea .mt-3 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Mobile: Camera controls vertical */
+@media (max-width: 575.98px) {
+  #testArea .mt-3 {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+}
+
+#testArea .row {
+  gap: 2rem;
+}
+    </style>
+</head>
+
+<body>
+  <!-- Hero Section -->
+  <section
+  class="hero-section"
+  style="
+    width: 100%;
+    min-height: 500px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+    overflow: hidden;
+  "
+>
+  <!-- Desktop: Video -->
+  <div class="d-none d-md-block w-100 h-100" style="position: absolute; inset: 0; z-index: 0;">
+    <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;">
+      <source src="assets/53606b19-2cd6-4f78-b962-9a2e12bf8dea-0.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div style="position: absolute; inset: 0; background: rgb(8 10 15 / 82%); z-index: 1;"></div>
+  </div>
+  <!-- Mobile: Image -->
+  <div class="d-block d-md-none w-100 h-100" style="position: absolute; inset: 0; z-index: 0;">
+    <img src="assets/images/eye-tst-hero.jpg" alt="Eye Test Hero" style="width:100%;height:100%;object-fit:cover;">
+    <div style="position: absolute; inset: 0; background: rgb(8 10 15 / 82%); z-index: 1;"></div>
+  </div>
+  <div
+    style="
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      min-height: 500px;
+    "
+  >
+    <h1
+      class="text-gradient"
+      style="
+        font-size: 3.1rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px; /* kam gap for icon */
+        max-width: 900px;
+        margin: 0 auto;
+        width: 100%;
+      "
+    >
+      <i class="bi bi-eye text-info" style="font-size:3rem;"></i>
+      Eye Health Test & AI Analysis
+    </h1>
+    <p
+      style="
+        color: #fff !important;
+        font-size: 18px;
+        margin-top: 18px;
+        text-shadow: 0 2px 8px #0007;
+      "
+    >
+      Get instant risk assessment for cataract, glaucoma and more.
+    </p>
+  </div>
+</section>
+
+  <!-- Instructions Section (Place after hero section, before navbar) -->
+  <section class="container my-5">
+    <h2 class="text-gradient fw-bold mb-5 text-center" style="font-size:2.3rem;">
+      <i class="bi bi-lightbulb text-info me-2"></i>
+      How to Take the Eye Test
+    </h2>
+    <div class="row align-items-center g-5">
+      <!-- Image Side -->
+      <div class="col-lg-6 text-center">
+        <img src="assets/images/download.webp" alt="Eye Test Instructions" class="img-fluid rounded-4 shadow" style="max-height:340px;object-fit:cover;">
+      </div>
+      <!-- Content Side -->
+      <div class="col-lg-6">
+        <ul class="list-unstyled fs-5">
+          <li class="mb-3"><i class="bi bi-check-circle text-info me-2"></i>Sit comfortably and relax your eyes.</li>
+          <li class="mb-3"><i class="bi bi-check-circle text-info me-2"></i>If you use glasses or lenses, wear them during the test.</li>
+          <li class="mb-3"><i class="bi bi-check-circle text-info me-2"></i>Make sure your device screen is clean and brightness is comfortable.</li>
+          <li class="mb-3"><i class="bi bi-check-circle text-info me-2"></i>Take a clear photo of your eye using the camera or upload a photo.</li>
+          <li class="mb-3"><i class="bi bi-check-circle text-info me-2"></i>Click "Analyze Image" to get instant results.</li>
+          <li class="mb-3"><i class="bi bi-exclamation-circle text-warning me-2"></i>If the result looks abnormal, please consult an eye specialist.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <i class="bi bi-eye fs-2 me-2"></i>
+        <span class="fw-bold">Optimmystic</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="eye-test.html">Eye Test</a></li>
+          <li class="nav-item"><a class="nav-link" href="test-result.html">Test Results</a></li>
+          <li class="nav-item"><a class="nav-link" href="product.html">Our Product</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+        </ul>
+        <div class="d-flex align-items-center ms-lg-3 gap-2">
+          <!-- Support Icon Button -->
+          <button id="supportBtn" class="btn btn-outline-info btn-sm rounded-circle" title="Support / Help" style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;">
+            <i class="bi bi-question-circle-fill"></i>
+          </button>
+          <!-- Modern Login Button -->
+          <a href="login.html" class="btn btn-glass-main btn-login-navbar d-flex align-items-center gap-2 px-4 py-2" style="font-weight:700;font-size:1.08rem;">
+            <i class="bi bi-box-arrow-in-right fs-5"></i>
+            <span>Login</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container-fluid py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <!-- Header -->
+        <div class="text-center mb-5">
+          <h1 class="display-4 fw-bold text-gradient mb-3">
+            <i class="bi bi-eye text-info me-3"></i>
+            Professional Eye Test
+          </h1>
+          <p class="lead text-muted">Advanced vision testing with AI-powered analysis</p>
+        </div>
+
+        <!-- Test Selection -->
+        <div class="row mb-5">
+          <div class="col-lg-4 col-md-6 mb-3">
+            <div class="test-card active" data-test="acuity">
+              <div class="text-center">
+                <i class="bi bi-eye-fill text-info mb-3" style="font-size: 2.5rem;"></i>
+                <h5>Visual Acuity Test</h5>
+                <p class="text-muted small">AI-powered analysis of your visual clarity and sharpness</p>
+                <div class="test-features mt-2">
+                  <span class="badge bg-info me-1">AI-Powered</span>
+                  <span class="badge bg-success">Quick</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-3">
+            <div class="test-card" data-test="colorblind">
+              <div class="text-center">
+                <i class="bi bi-palette-fill text-warning mb-3" style="font-size: 2.5rem;"></i>
+                <h5>Color Blindness Test</h5>
+                <p class="text-muted small">Ishihara plates and comprehensive color vision screening</p>
+                <div class="test-features mt-2">
+                  <span class="badge bg-warning me-1">Interactive</span>
+                  <span class="badge bg-primary">Comprehensive</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-3">
+            <div class="test-card" data-test="quiz">
+              <div class="text-center">
+                <i class="bi bi-question-circle-fill text-success mb-3" style="font-size: 2.5rem;"></i>
+                <h5>Eye Health Quiz</h5>
+                <p class="text-muted small">Test your eye health knowledge and get personalized tips</p>
+                <div class="test-features mt-2">
+                  <span class="badge bg-success me-1">Educational</span>
+                  <span class="badge bg-info">Self-Assessment</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Test Areas -->
+        <div id="colorBlindnessTest" class="test-section" style="display: none;">
+          <div class="eye-test-container p-4 mb-4">
+            <div class="text-center mb-4">
+              <h4 class="text-gradient mb-3">
+                <i class="bi bi-palette-fill text-warning me-2"></i>
+                Color Blindness Test
+              </h4>
+              <p class="text-light-emphasis">Look at each circle and identify the number or pattern you see. Click your answer below each image.</p>
+              <!-- Start Camera button removed; use "Save & Start Test" in the inline form below -->
+            </div>
+            <!-- Patient Info handled via modal for Color Blindness Test -->
+            <div class="card bg-dark text-light mb-3 p-3" id="inlinePatientFormColor">
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+                  <h6 class="mb-1">Patient Information</h6>
+                  <p class="small mb-0 text-muted">Open the patient info popup to enter details for this test.</p>
+                </div>
+                <div>
+                  <button class="btn btn-outline-info btn-theme" id="openPatientModalColor">
+                    <i class="bi bi-person-lines-fill me-2"></i>Open Patient Info
+                  </button>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row g-4" id="ishiharaPlates">
+              <!-- Ishihara Plate 1 -->
+              <div class="col-md-4">
+                <div class="color-test-card p-3 text-center">
+                  <div class="ishihara-plate mb-3" id="plate1">
+                    <svg width="200" height="200" viewBox="0 0 200 200">
+                      <!-- Background dots -->
+                      <g id="bgDots1"></g>
+                      <!-- Number dots -->
+                      <g id="numberDots1"></g>
+                    </svg>
+                  </div>
+                  <p class="mb-2">What number do you see?</p>
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-info btn-sm color-answer" data-plate="1" data-answer="12">12</button>
+                    <button type="button" class="btn btn-outline-info btn-sm color-answer" data-plate="1" data-answer="nothing">Nothing</button>
+                    <button type="button" class="btn btn-outline-info btn-sm color-answer" data-plate="1" data-answer="other">Other</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ishihara Plate 2 -->
+              <div class="col-md-4">
+                <div class="color-test-card p-3 text-center">
+                  <div class="ishihara-plate mb-3" id="plate2">
+                    <svg width="200" height="200" viewBox="0 0 200 200">
+                      <g id="bgDots2"></g>
+                      <g id="numberDots2"></g>
+                    </svg>
+                  </div>
+                  <p class="mb-2">What number do you see?</p>
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-info btn-sm color-answer" data-plate="2" data-answer="8">8</button>
+                    <button type="button" class="btn btn-outline-info btn-sm color-answer" data-plate="2" data-answer="3">3</button>
+                    <button type="button" class="btn btn-outline-info btn-sm color-answer" data-plate="2" data-answer="nothing">Nothing</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ishihara Plate 3 -->
+              <div class="col-md-4">
+                <div class="color-test-card p-3 text-center">
+                  <div class="ishihara-plate mb-3" id="plate3">
+                    <svg width="200" height="200" viewBox="0 0 200 200">
+                      <g id="bgDots3"></g>
+                      <g id="numberDots3"></g>
+                    </svg>
+                  </div>
+                  <p class="mb-2">What number do you see?</p>
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-info btn-sm color-answer" data-plate="3" data-answer="29">29</button>
+                    <button type="button" class="btn btn-outline-info btn-sm color-answer" data-plate="3" data-answer="70">70</button>
+                    <button type="button" class="btn btn-outline-info btn-sm color-answer" data-plate="3" data-answer="nothing">Nothing</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center mt-4">
+              <button class="btn btn-primary btn-lg btn-theme" id="completeColorTest">
+                <i class="bi bi-check-circle me-2"></i>Complete Color Test
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Eye Health Quiz Section -->
+        <div id="eyeHealthQuiz" class="test-section" style="display: none;">
+          <div class="eye-test-container p-4 mb-4">
+            <div class="text-center mb-4">
+              <h4 class="text-gradient mb-3">
+                <i class="bi bi-question-circle-fill text-success me-2"></i>
+                Eye Health Knowledge Quiz
+              </h4>
+              <p class="text-light-emphasis">Test your knowledge about eye health and get personalized recommendations.</p>
+              <!-- Start Camera button removed; use "Save & Start Test" in the inline form below -->
+            </div>
+            <!-- Patient Info handled via modal for Eye Health Quiz -->
+            <div class="card bg-dark text-light mb-3 p-3" id="inlinePatientFormQuiz">
+              <div class="d-flex align-items-center justify-content-between">
+                <div>
+                  <h6 class="mb-1">Patient Information</h6>
+                  <p class="small mb-0 text-muted">Open the patient info popup to enter details for this quiz.</p>
+                </div>
+                <div>
+                  <button class="btn btn-outline-info btn-theme" id="openPatientModalQuiz">
+                    <i class="bi bi-person-lines-fill me-2"></i>Open Patient Info
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div id="quizQuestions">
+              <!-- Question 1 -->
+              <div class="quiz-question mb-4" data-question="1">
+                <div class="question-card p-4">
+                  <h6 class="text-info mb-3">Question 1 of 5</h6>
+                  <h5 class="mb-3">How often should adults get comprehensive eye exams?</h5>
+                  <div class="quiz-options">
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q1" id="q1a" value="yearly">
+                      <label class="form-check-label" for="q1a">Every year</label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q1" id="q1b" value="two-years">
+                      <label class="form-check-label" for="q1b">Every 2 years</label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q1" id="q1c" value="five-years">
+                      <label class="form-check-label" for="q1c">Every 5 years</label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q1" id="q1d" value="when-problems">
+                      <label class="form-check-label" for="q1d">Only when having problems</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Question 2 -->
+              <div class="quiz-question mb-4" data-question="2" style="display: none;">
+                <div class="question-card p-4">
+                  <h6 class="text-info mb-3">Question 2 of 5</h6>
+                  <h5 class="mb-3">What is the 20-20-20 rule for reducing eye strain?</h5>
+                  <div class="quiz-options">
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q2" id="q2a" value="correct">
+                      <label class="form-check-label" for="q2a">Every 20 minutes, look at something 20 feet away for 20 seconds</label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q2" id="q2b" value="wrong1">
+                      <label class="form-check-label" for="q2b">Blink 20 times every 20 minutes for 20 seconds</label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q2" id="q2c" value="wrong2">
+                      <label class="form-check-label" for="q2c">Rest your eyes for 20 minutes every 20 hours</label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q2" id="q2d" value="wrong3">
+                      <label class="form-check-label" for="q2d">Use eye drops 20 times per day</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Question 3 -->
+              <div class="quiz-question mb-4" data-question="3" style="display: none;">
+                <div class="question-card p-4">
+                  <h6 class="text-info mb-3">Question 3 of 5</h6>
+                  <h5 class="mb-3">Which foods are best for eye health?</h5>
+                  <div class="quiz-options">
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q3" id="q3a" value="wrong1">
+                      <label class="form-check-label" for="q3a">Only carrots</label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q3" id="q3b" value="correct">
+                      <label class="form-check-label" for="q3b">Leafy greens, fish, nuts, and colorful vegetables</label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q3" id="q3c" value="wrong2">
+                      <label class="form-check-label" for="q3c">Only dairy products</label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q3" id="q3d" value="wrong3">
+                      <label class="form-check-label" for="q3d">Processed foods and sugary snacks</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Question 4 -->
+              <div class="quiz-question mb-4" data-question="4" style="display: none;">
+                <div class="question-card p-4">
+                  <h6 class="text-info mb-3">Question 4 of 5</h6>
+                  <h5 class="mb-3">What is the leading cause of blindness worldwide?</h5>
+                  <div class="quiz-options">
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q4" id="q4a" value="wrong1">
+                      <label class="form-check-label" for="q4a">Glaucoma</label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q4" id="q4b" value="correct">
+                      <label class="form-check-label" for="q4b">Cataracts</label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q4" id="q4c" value="wrong2">
+                      <label class="form-check-label" for="q4c">Macular degeneration</label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q4" id="q4d" value="wrong3">
+                      <label class="form-check-label" for="q4d">Diabetic retinopathy</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Question 5 -->
+              <div class="quiz-question mb-4" data-question="5" style="display: none;">
+                <div class="question-card p-4">
+                  <h6 class="text-info mb-3">Question 5 of 5</h6>
+                  <h5 class="mb-3">How much daily screen time is considered safe for eye health?</h5>
+                  <div class="quiz-options">
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q5" id="q5a" value="wrong1">
+                      <label class="form-check-label" for="q5a">Unlimited with proper lighting</label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q5" id="q5b" value="wrong2">
+                      <label class="form-check-label" for="q5b">No more than 2 hours total</label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q5" id="q5c" value="correct">
+                      <label class="form-check-label" for="q5c">Depends on breaks taken and proper ergonomics</label>
+                    </div>
+                    <div class="form-check mb-2">
+                      <input class="form-check-input" type="radio" name="q5" id="q5d" value="wrong3">
+                      <label class="form-check-label" for="q5d">Only during daylight hours</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center mt-4">
+              <button class="btn btn-success btn-theme me-2" id="nextQuizQuestion" style="display: none;">
+                <i class="bi bi-arrow-right me-2"></i>Next Question
+              </button>
+              <button class="btn btn-primary btn-lg btn-theme" id="completeQuiz" style="display: none;">
+                <i class="bi bi-check-circle me-2"></i>Complete Quiz
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA to start test -->
+        <!-- <div class="text-center mb-4">
+          <a id="startTestCta" class="btn btn-glass-main btn-lg px-4 py-2" href="javascript:void(0)">
+            Start Eye Test <i class="bi bi-arrow-right ms-2"></i>
+          </a>
+        </div> -->
+
+        <!-- Camera & Upload Section -->
+        <div class="eye-test-container p-4 mb-4" id="testArea">
+          <div class="row g-5">
+            <div class="col-lg-8">
+              <h4 class="mb-3">
+                <i class="bi bi-camera-video-fill text-info me-2"></i>
+                Camera Access
+              </h4>
+              <!-- Patient Info now handled via modal - open popup to edit -->
+              <div class="card bg-dark text-light mb-3 p-3" id="inlinePatientForm">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <h6 class="mb-1">Patient Information</h6>
+                    <p class="small mb-0 text-muted">Open the patient info popup to enter or edit details for accurate results.</p>
+                  </div>
+                  <div>
+                    <button class="btn btn-outline-info btn-theme" id="openPatientModalMain">
+                      <i class="bi bi-person-lines-fill me-2"></i>Open Patient Info
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="camera-container">
+                <video id="videoElement" autoplay muted></video>
+                <div class="camera-overlay"></div>
+                <div class="camera-controls">
+                  <button class="capture-btn" id="captureBtn" disabled>
+                    <i class="bi bi-camera-fill"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="mt-3">
+                <button class="btn btn-outline-info btn-theme me-2" id="startCamera">
+                  <i class="bi bi-camera-video me-2"></i>Start Camera
+                </button>
+                <button class="btn btn-outline-secondary btn-theme" id="stopCamera">
+                  <i class="bi bi-stop-circle me-2"></i>Stop Camera
+                </button>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <h4 class="mb-3">
+                <i class="bi bi-upload text-info me-2"></i>
+                Upload Image
+              </h4>
+              <div class="upload-area" id="uploadArea">
+                <i class="bi bi-cloud-upload text-info mb-3" style="font-size: 3rem;"></i>
+                <h5>Drag & Drop Image</h5>
+                <p class="text-muted">or click to browse</p>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <button class="btn btn-outline-info btn-theme mt-2" onclick="document.getElementById('fileInput').click()">
+                  <i class="bi bi-folder2-open me-2"></i>Browse Files
+                </button>
+              </div>
+              <div class="mt-3">
+                <img id="previewImage" alt="Captured/Uploaded preview" style="display: none; width: 100%; border-radius: 10px; border: 1px solid rgba(13,202,240,0.2);" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- Test Progress -->
+         <div class="eye-test-container p-4 mb-4" id="testProgress" style="display: none;"> 
+                    <h4 class="mb-3">
+            <i class="bi bi-graph-up text-info me-2"></i>
+            Test Progress
+          </h4>
+          <div class="progress-bar mb-3">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="d-flex align-items-center">
+                <span class="status-indicator status-good"></span>
+                <span>Camera Ready</span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="d-flex align-items-center">
+                <span class="status-indicator" id="analysisStatus"></span>
+                <span id="analysisText">Waiting for image...</span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="d-flex align-items-center">
+                <span class="status-indicator" id="resultStatus"></span>
+                <span id="resultText">Processing...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="eye-test-container p-4" id="resultsSection" style="display: none;">
+          <h4 class="mb-4">
+            <i class="bi bi-clipboard-data text-info me-2"></i>
+            Test Results
+          </h4>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="result-card">
+                <div class="text-center mb-3">
+                  <i class="eye-icon bi bi-eye"></i>
+                  <h5>Visual Acuity</h5>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span>Left Eye:</span>
+                  <span class="fw-bold text-info" id="leftEyeResult">20/20</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span>Right Eye:</span>
+                  <span class="fw-bold text-info" id="rightEyeResult">20/20</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <span>Overall:</span>
+                  <span class="fw-bold text-success" id="overallResult">Excellent</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="result-card">
+                <div class="text-center mb-3">
+                  <i class="eye-icon bi bi-lightbulb"></i>
+                  <h5>Recommendations</h5>
+                </div>
+                <ul class="list-unstyled">
+                  <li class="mb-2">
+                    <i class="bi bi-check-circle text-success me-2"></i>
+                    <span id="recommendation1">Your vision is excellent</span>
+                  </li>
+                  <li class="mb-2">
+                    <i class="bi bi-info-circle text-info me-2"></i>
+                    <span id="recommendation2">Consider regular checkups</span>
+                  </li>
+                  <li class="mb-2">
+                    <i class="bi bi-shield-check text-warning me-2"></i>
+                    <span id="recommendation3">Protect your eyes from blue light</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+            <div class="text-center mt-4">
+            <button class="btn btn-primary btn-theme me-2" id="saveResults">
+              <i class="bi bi-download me-2"></i>Save Results
+            </button>
+            <button class="btn btn-outline-info btn-theme" id="shareResults">
+              <i class="bi bi-share me-2"></i>Share Results
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Patient Information Modal -->
+  <div class="modal fade" id="patientInfoModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title"><i class="bi bi-person-lines-fill text-info me-2"></i>Patient Information</h5>
+        </div>
+        <div class="modal-body">
+          <form id="patientInfoForm" class="needs-validation" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="patientName" class="form-label">Full Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control bg-dark text-light border-secondary" id="patientName" required>
+                <div class="invalid-feedback">
+                  Please enter patient's full name.
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="patientAge" class="form-label">Age <span class="text-danger">*</span></label>
+                <input type="number" class="form-control bg-dark text-light border-secondary" id="patientAge" min="1" max="120" required>
+                <div class="invalid-feedback">
+                  Please enter a valid age (1-120).
+                </div>
+              </div>
+              <div class="col-12">
+                <label for="previousResults" class="form-label">Previous Test Results (if any)</label>
+                <textarea class="form-control bg-dark text-light border-secondary" id="previousResults" rows="2" placeholder="Enter any previous eye test results or notes"></textarea>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Do you wear glasses? <span class="text-danger">*</span></label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="wearsGlasses" id="glassesYes" value="yes" required>
+                  <label class="form-check-label" for="glassesYes">Yes</label>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="radio" name="wearsGlasses" id="glassesNo" value="no" required>
+                  <label class="form-check-label" for="glassesNo">No</label>
+                  <div class="invalid-feedback">
+                    Please select an option.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6" id="glassesNumberContainer" style="display: none;">
+                <label for="glassesNumber" class="form-label">Glasses Number (if known)</label>
+                <div class="input-group">
+                  <input type="number" step="0.25" class="form-control bg-dark text-light border-secondary" id="glassesNumber" placeholder="e.g., -2.5">
+                  <span class="input-group-text bg-dark text-light border-secondary">diopters</span>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+          <div class="modal-footer border-secondary">
+          <button type="button" class="btn btn-outline-secondary btn-theme" id="cancelTestBtn">Cancel Test</button>
+          <button type="button" class="btn btn-primary btn-theme" id="startTestBtn">Start Test</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Tutorial Modal -->
+  <div class="modal fade" id="tutorialModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title text-gradient">
+            <i class="bi bi-play-circle text-info me-2"></i>
+            Eye Test Tutorial - Step <span id="tutorialStep">1</span> of 6
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Tutorial Progress Bar -->
+          <div class="tutorial-progress mb-4">
+            <div class="tutorial-progress-fill" id="tutorialProgressFill" style="width: 16.67%"></div>
+          </div>
+
+          <!-- Tutorial Step 1: Patient Information -->
+          <div class="tutorial-step" id="step1">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <div class="step-number mb-3">1</div>
+                <h4 class="text-info mb-3">Fill Patient Information</h4>
+                <p class="mb-3">Start by providing your basic information for accurate results and personalized recommendations.</p>
+                <ul class="list-unstyled">
+                  <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Enter your full name</li>
+                  <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Specify your age</li>
+                  <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Glasses information (if applicable)</li>
+                  <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>Previous test results (optional)</li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <div class="tutorial-visual p-4 bg-dark bg-opacity-25 rounded">
+                  <div class="text-center">
+                    <i class="bi bi-person-fill text-info" style="font-size: 4rem;"></i>
+                    <h6 class="mt-3">Patient Information Form</h6>
+                    <p class="text-muted small">This information helps us provide personalized results and recommendations.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tutorial Step 2: Choose Test Type -->
+          <div class="tutorial-step" id="step2" style="display: none;">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <div class="step-number mb-3">2</div>
+                <h4 class="text-info mb-3">Choose Your Test Type</h4>
+                <p class="mb-3">Select the type of eye test you want to take based on your needs.</p>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="test-type-demo p-3 border border-info rounded">
+                      <i class="bi bi-eye-fill text-info mb-2" style="font-size: 2rem;"></i>
+                      <h6>Visual Acuity</h6>
+                      <small>AI-powered vision clarity analysis</small>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="test-type-demo p-3 border border-warning rounded">
+                      <i class="bi bi-palette-fill text-warning mb-2" style="font-size: 2rem;"></i>
+                      <h6>Color Blindness</h6>
+                      <small>Interactive Ishihara plate testing</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="tutorial-visual p-4 bg-dark bg-opacity-25 rounded">
+                  <div class="text-center">
+                    <i class="bi bi-grid-3x3-gap-fill text-info" style="font-size: 4rem;"></i>
+                    <h6 class="mt-3">Test Selection</h6>
+                    <p class="text-muted small">Choose the most appropriate test for your specific vision concerns.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tutorial Step 3: Setup Environment -->
+          <div class="tutorial-step" id="step3" style="display: none;">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <div class="step-number mb-3">3</div>
+                <h4 class="text-info mb-3">Setup Your Environment</h4>
+                <p class="mb-3">Ensure optimal testing conditions for accurate results.</p>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="environment-tip p-3 bg-success bg-opacity-10 border border-success rounded">
+                      <i class="bi bi-lightbulb text-success mb-2"></i>
+                      <h6 class="text-success">Good Lighting</h6>
+                      <small>Natural daylight preferred, avoid shadows</small>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="environment-tip p-3 bg-info bg-opacity-10 border border-info rounded">
+                      <i class="bi bi-wifi text-info mb-2"></i>
+                      <h6 class="text-info">Stable Connection</h6>
+                      <small>Ensure reliable internet for AI analysis</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="tutorial-visual p-4 bg-dark bg-opacity-25 rounded">
+                  <div class="text-center">
+                    <i class="bi bi-gear-fill text-info" style="font-size: 4rem;"></i>
+                    <h6 class="mt-3">Environment Setup</h6>
+                    <p class="text-muted small">Proper setup ensures the most accurate test results.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tutorial Step 4: Camera/Image Capture -->
+          <div class="tutorial-step" id="step4" style="display: none;">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <div class="step-number mb-3">4</div>
+                <h4 class="text-info mb-3">Capture Your Eye Image</h4>
+                <p class="mb-3">Take a clear photo of your eyes using our guided interface.</p>
+                <div class="capture-tips">
+                  <h6 class="text-warning mb-2">Camera Tips:</h6>
+                  <ul class="list-unstyled">
+                    <li class="mb-1"><i class="bi bi-arrow-right text-success me-2"></i>Position face in the circular overlay</li>
+                    <li class="mb-1"><i class="bi bi-arrow-right text-success me-2"></i>Keep camera 18-24 inches away</li>
+                    <li class="mb-1"><i class="bi bi-arrow-right text-success me-2"></i>Look directly at the camera</li>
+                    <li class="mb-1"><i class="bi bi-arrow-right text-success me-2"></i>Ensure both eyes are clearly visible</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="tutorial-visual p-4 bg-dark bg-opacity-25 rounded">
+                  <div class="text-center">
+                    <div class="camera-demo position-relative d-inline-block">
+                      <i class="bi bi-camera-fill text-info" style="font-size: 4rem;"></i>
+                      <div class="camera-overlay-demo"></div>
+                    </div>
+                    <h6 class="mt-3">Camera Interface</h6>
+                    <p class="text-muted small">Follow the on-screen guides for perfect image capture.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tutorial Step 5: AI Analysis -->
+          <div class="tutorial-step" id="step5" style="display: none;">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <div class="step-number mb-3">5</div>
+                <h4 class="text-info mb-3">AI Analysis Process</h4>
+                <p class="mb-3">Our advanced AI system analyzes your image for vision assessment.</p>
+                <div class="analysis-steps">
+                  <div class="d-flex align-items-center mb-2">
+                    <div class="analysis-icon me-3">
+                      <i class="bi bi-eye text-info"></i>
+                    </div>
+                    <span>Eye detection and positioning</span>
+                  </div>
+                  <div class="d-flex align-items-center mb-2">
+                    <div class="analysis-icon me-3">
+                      <i class="bi bi-cpu text-warning"></i>
+                    </div>
+                    <span>Pattern recognition analysis</span>
+                  </div>
+                  <div class="d-flex align-items-center mb-2">
+                    <div class="analysis-icon me-3">
+                      <i class="bi bi-graph-up text-success"></i>
+                    </div>
+                    <span>Vision acuity calculation</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="tutorial-visual p-4 bg-dark bg-opacity-25 rounded">
+                  <div class="text-center">
+                    <div class="ai-demo">
+                      <i class="bi bi-cpu-fill text-info" style="font-size: 4rem;"></i>
+                      <div class="processing-animation mt-2">
+                        <div class="spinner-border text-info" role="status">
+                          <span class="visually-hidden">Processing...</span>
+                        </div>
+                      </div>
+                    </div>
+                    <h6 class="mt-3">AI Processing</h6>
+                    <p class="text-muted small">Advanced algorithms analyze your vision in real-time.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tutorial Step 6: Results & Recommendations -->
+          <div class="tutorial-step" id="step6" style="display: none;">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <div class="step-number mb-3">6</div>
+                <h4 class="text-info mb-3">Get Your Results</h4>
+                <p class="mb-3">Receive comprehensive results with personalized recommendations.</p>
+                <div class="results-preview">
+                  <h6 class="text-success mb-2">You'll Receive:</h6>
+                  <ul class="list-unstyled">
+                    <li class="mb-1"><i class="bi bi-check-circle text-success me-2"></i>Detailed vision analysis</li>
+                    <li class="mb-1"><i class="bi bi-check-circle text-success me-2"></i>Personalized recommendations</li>
+                    <li class="mb-1"><i class="bi bi-check-circle text-success me-2"></i>Downloadable report</li>
+                    <li class="mb-1"><i class="bi bi-check-circle text-success me-2"></i>Next steps guidance</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="tutorial-visual p-4 bg-dark bg-opacity-25 rounded">
+                  <div class="text-center">
+                    <i class="bi bi-clipboard2-data-fill text-info" style="font-size: 4rem;"></i>
+                    <h6 class="mt-3">Comprehensive Results</h6>
+                    <p class="text-muted small">Get detailed insights about your vision health.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-secondary">
+          <button type="button" class="btn btn-outline-secondary btn-theme" id="prevTutorialStep" style="display: none;">
+            <i class="bi bi-arrow-left me-2"></i>Previous
+          </button>
+          <button type="button" class="btn btn-outline-info btn-theme" data-bs-dismiss="modal">
+            Skip Tutorial
+          </button>
+          <button type="button" class="btn btn-info btn-theme" id="nextTutorialStep">
+            Next <i class="bi bi-arrow-right ms-2"></i>
+          </button>
+          <button type="button" class="btn btn-primary btn-theme" id="startTestFromTutorial" style="display: none;" data-bs-dismiss="modal">
+            <i class="bi bi-play-circle me-2"></i>Start Test Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- Footer -->
+  <footer class="py-4">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h5>Optimmystic</h5>
+          <p class="mb-0">&copy; 2025 Optimmystic. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-md-end mt-3 mt-md-0">
+          <a href="contact.html" class="text-decoration-none me-3">Contact</a>
+          <a href="#" class="text-decoration-none me-3">Privacy Policy</a>
+          <a href="#" class="text-decoration-none">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Hide loader when page is fully loaded
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        var loader = document.getElementById('pageLoader');
+        if(loader) loader.style.opacity = '0';
+        setTimeout(function() {
+          if(loader) loader.style.display = 'none';
+        }, 400);
+      }, 400);
+    });
+
+    // Support button logic
+    const supportBtn = document.getElementById('supportBtn');
+    if(supportBtn) {
+      supportBtn.addEventListener('click', function() {
+        alert('For support, please email us at support@optimmystic.com or use the contact page.');
+      });
+    }
+
+    // Eye Test Functionality
+    let stream = null;
+    let selectedTest = 'acuity';
+    let testResults = {};
+
+    // Smooth scroll from CTA to test area
+    document.getElementById('startTestCta')?.addEventListener('click', function(){
+      const el = document.getElementById('testArea');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    // Patient Info Modal Elements
+    const patientInfoModal = new bootstrap.Modal(document.getElementById('patientInfoModal'));
+    const patientInfoForm = document.getElementById('patientInfoForm');
+    const glassesYes = document.getElementById('glassesYes');
+    const glassesNo = document.getElementById('glassesNo');
+    const glassesNumberContainer = document.getElementById('glassesNumberContainer');
+    const glassesNumber = document.getElementById('glassesNumber');
+    const startTestBtn = document.getElementById('startTestBtn');
+    const cancelTestBtn = document.getElementById('cancelTestBtn');
+
+    // Toggle glasses number field based on selection
+    function toggleGlassesNumber() {
+      glassesNumberContainer.style.display = glassesYes.checked ? 'block' : 'none';
+      if (glassesYes.checked) {
+        glassesNumber.setAttribute('required', 'required');
+      } else {
+        glassesNumber.removeAttribute('required');
+      }
+    }
+
+    glassesYes.addEventListener('change', toggleGlassesNumber);
+    glassesNo.addEventListener('change', toggleGlassesNumber);
+
+    // Form validation and submission
+    startTestBtn.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      if (!patientInfoForm.checkValidity()) {
+        event.stopPropagation();
+        patientInfoForm.classList.add('was-validated');
+        return;
+      }
+
+      // Update patient data before proceeding
+      updatePatientData();
+
+      // Hide patient info modal
+      if (patientInfoModalInstance) {
+        patientInfoModalInstance.hide();
+      }
+
+      // After modal is hidden, proceed to the selected test
+      const tutorialModal = new bootstrap.Modal(document.getElementById('tutorialModal'));
+      // Show tutorial first as before
+      tutorialModal.show();
+      initializeTutorial();
+
+      // Small delay to ensure modal hide animation finishes then show the requested test section
+      setTimeout(() => {
+        // Hide all test sections first
+        document.querySelectorAll('.test-section').forEach(section => {
+          section.style.display = 'none';
+        });
+
+        if (pendingSelectedTest === 'colorblind') {
+          document.getElementById('colorBlindnessTest').style.display = 'block';
+          generateIshiharaPlates();
+          showNotification('Color Blindness Test selected. Look at each plate and identify the numbers.', 'info');
+        } else if (pendingSelectedTest === 'quiz') {
+          document.getElementById('eyeHealthQuiz').style.display = 'block';
+          initializeQuiz();
+          showNotification('Eye Health Quiz selected. Test your knowledge!', 'info');
+        } else {
+          // Visual Acuity
+          document.getElementById('testArea').style.display = 'block';
+          showNotification('Visual Acuity Test selected. Use camera or upload to proceed.', 'info');
+          // Optionally start camera automatically if you want; leave user in control
+        }
+
+        // clear pending selection
+        pendingSelectedTest = null;
+      }, 400);
+    });
+
+    // Cancel test button
+    cancelTestBtn.addEventListener('click', function() {
+      if (confirm('Are you sure you want to cancel? All entered information will be lost.')) {
+        patientInfoModalInstance.hide();
+        patientInfoForm.reset();
+        patientInfoForm.classList.remove('was-validated');
+      }
+    });
+
+    // Initialize patient info modal
+    const patientInfoModalElement = document.getElementById('patientInfoModal');
+    let patientInfoModalInstance = new bootstrap.Modal(patientInfoModalElement);
+    
+    // Show patient info modal when clicking start camera button (if patient info not provided)
+    document.getElementById('startCamera').addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Check if patient data exists
+      if (!patientData.name || !patientData.age) {
+        // Reset form validation
+        patientInfoForm.classList.remove('was-validated');
+        patientInfoForm.reset();
+        
+        // Show the modal
+        patientInfoModalInstance.show();
+      } else {
+        // Patient info already provided, proceed with camera
+        initializeCamera();
+      }
+    });
+
+    // New buttons that open the patient info modal from inline cards
+    const openPatientModalMain = document.getElementById('openPatientModalMain');
+    const openPatientModalColor = document.getElementById('openPatientModalColor');
+    const openPatientModalQuiz = document.getElementById('openPatientModalQuiz');
+
+    function openModalForTest(testKey) {
+      pendingSelectedTest = testKey;
+      // copy inline values for convenience
+      copyInlineToModalForTest(testKey);
+      patientInfoForm.classList.remove('was-validated');
+      patientInfoModalInstance.show();
+    }
+
+    if (openPatientModalMain) openPatientModalMain.addEventListener('click', () => openModalForTest('acuity'));
+    if (openPatientModalColor) openPatientModalColor.addEventListener('click', () => openModalForTest('colorblind'));
+    if (openPatientModalQuiz) openPatientModalQuiz.addEventListener('click', () => openModalForTest('quiz'));
+
+    // Camera functionality
+    const startCameraBtn = document.getElementById('startCamera');
+    const stopCameraBtn = document.getElementById('stopCamera');
+    const videoElement = document.getElementById('videoElement');
+    const captureBtn = document.getElementById('captureBtn');
+    const previewImage = document.getElementById('previewImage');
+
+    // Capability checks and initial state
+    if (!('mediaDevices' in navigator) || !('getUserMedia' in navigator.mediaDevices)) {
+      startCameraBtn.disabled = true;
+      stopCameraBtn.disabled = true;
+      showNotification('Camera not supported in this browser/device.', 'warning');
+    } else {
+      stopCameraBtn.disabled = true;
+    }
+
+    // Initialize camera function
+    async function initializeCamera() {
+      // Show loading state
+      startCameraBtn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Starting...';
+      startCameraBtn.disabled = true;
+      
+      
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ 
+          video: { 
+            facingMode: 'user',
+            width: { ideal: 1280 },
+            height: { ideal: 720 }
+          } 
+        });
+        videoElement.srcObject = stream;
+        startCameraBtn.innerHTML = '<i class="bi bi-camera-video me-2"></i>Camera Started';
+        stopCameraBtn.disabled = false;
+        captureBtn.disabled = false;
+        showNotification('Camera started successfully!', 'success');
+      } catch (error) {
+        // Reset button state on error
+       
+        startCameraBtn.innerHTML = '<i class="bi bi-camera-video me-2"></i>Start Camera';
+        startCameraBtn.disabled = false;
+        
+        let errorMessage = 'Camera access denied. ';
+        if (error.name === 'NotFoundError') {
+          errorMessage += 'No camera found on this device.';
+        } else if (error.name === 'NotAllowedError') {
+          errorMessage += 'Please allow camera permissions and try again.';
+        } else if (error.name === 'NotReadableError') {
+          errorMessage += 'Camera is already in use by another application.';
+        } else {
+          errorMessage += 'Please check your camera settings.';
+        }
+        showNotification(errorMessage, 'error');
+        console.error('Camera error:', error);
+      }
+    }
+
+    stopCameraBtn.addEventListener('click', () => {
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        videoElement.srcObject = null;
+        startCameraBtn.innerHTML = '<i class="bi bi-camera-video me-2"></i>Start Camera';
+        startCameraBtn.disabled = false;
+        stopCameraBtn.disabled = true;
+        captureBtn.disabled = true;
+        showNotification('Camera stopped.', 'info');
+      }
+    });
+
+    // Capture functionality
+    captureBtn.addEventListener('click', () => {
+      if (stream) {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.width = videoElement.videoWidth;
+        canvas.height = videoElement.videoHeight;
+        context.drawImage(videoElement, 0, 0);
+        
+        // Display captured image
+        const dataUrl = canvas.toDataURL('image/jpeg');
+        previewImage.src = dataUrl;
+        previewImage.style.display = 'block';
+        
+        // Start analysis
+        startAnalysis(dataUrl);
+      }
+    });
+
+  // main start camera button exists as #startCamera and is used by inline Save & Start Test buttons
+  const mainStartCamera = document.getElementById('startCamera');
+
+    // Inline patient form handlers
+    const inlineSave = document.getElementById('inlineSave');
+    const inlineSaveStart = document.getElementById('inlineSaveStart');
+    if (inlineSave || inlineSaveStart) {
+      function applyInlineToModal() {
+        // copy inline fields into modal fields
+        const name = document.getElementById('inlinePatientName').value;
+        const age = document.getElementById('inlinePatientAge').value;
+        const wears = document.getElementById('inlineWearsGlasses').value;
+        const gnum = document.getElementById('inlineGlassesNumber').value;
+        if (name) document.getElementById('patientName').value = name;
+        if (age) document.getElementById('patientAge').value = age;
+        if (wears) {
+          if (wears === 'yes') document.getElementById('glassesYes').checked = true;
+          else document.getElementById('glassesNo').checked = true;
+        }
+        if (gnum) document.getElementById('glassesNumber').value = gnum;
+        // update internal patientData
+        updatePatientData();
+      }
+
+      if (inlineSave) inlineSave.addEventListener('click', function(e){ e.preventDefault(); applyInlineToModal(); showNotification('Patient info saved (inline).', 'success'); });
+      if (inlineSaveStart) inlineSaveStart.addEventListener('click', async function(e){ e.preventDefault(); applyInlineToModal();
+        // ensure any modal is hidden and initialize camera
+        if (patientInfoModalInstance) patientInfoModalInstance.hide();
+        await initializeCamera();
+      });
+    }
+
+    // Color test inline handlers
+    const inlineSaveColor = document.getElementById('inlineSaveColor');
+    const inlineSaveStartColor = document.getElementById('inlineSaveStartColor');
+    if (inlineSaveColor || inlineSaveStartColor) {
+      function applyColorInline() {
+        const name = document.getElementById('inlinePatientNameColor').value;
+        const age = document.getElementById('inlinePatientAgeColor').value;
+        const wears = document.getElementById('inlineWearsGlassesColor').value;
+        const gnum = document.getElementById('inlineGlassesNumberColor').value;
+        if (name) document.getElementById('patientName').value = name;
+        if (age) document.getElementById('patientAge').value = age;
+        if (wears) {
+          if (wears === 'yes') document.getElementById('glassesYes').checked = true;
+          else document.getElementById('glassesNo').checked = true;
+        }
+        if (gnum) document.getElementById('glassesNumber').value = gnum;
+        updatePatientData();
+      }
+      if (inlineSaveColor) inlineSaveColor.addEventListener('click', function(e){ e.preventDefault(); applyColorInline(); showNotification('Patient info saved (color test).', 'success'); });
+      if (inlineSaveStartColor) inlineSaveStartColor.addEventListener('click', async function(e){ e.preventDefault(); applyColorInline(); if (patientInfoModalInstance) patientInfoModalInstance.hide(); await initializeCamera(); });
+    }
+
+    // Quiz inline handlers
+    const inlineSaveQuiz = document.getElementById('inlineSaveQuiz');
+    const inlineSaveStartQuiz = document.getElementById('inlineSaveStartQuiz');
+    if (inlineSaveQuiz || inlineSaveStartQuiz) {
+      function applyQuizInline() {
+        const name = document.getElementById('inlinePatientNameQuiz').value;
+        const age = document.getElementById('inlinePatientAgeQuiz').value;
+        const wears = document.getElementById('inlineWearsGlassesQuiz').value;
+        const gnum = document.getElementById('inlineGlassesNumberQuiz').value;
+        if (name) document.getElementById('patientName').value = name;
+        if (age) document.getElementById('patientAge').value = age;
+        if (wears) {
+          if (wears === 'yes') document.getElementById('glassesYes').checked = true;
+          else document.getElementById('glassesNo').checked = true;
+        }
+        if (gnum) document.getElementById('glassesNumber').value = gnum;
+        updatePatientData();
+      }
+      if (inlineSaveQuiz) inlineSaveQuiz.addEventListener('click', function(e){ e.preventDefault(); applyQuizInline(); showNotification('Patient info saved (quiz).', 'success'); });
+      if (inlineSaveStartQuiz) inlineSaveStartQuiz.addEventListener('click', async function(e){ e.preventDefault(); applyQuizInline(); if (patientInfoModalInstance) patientInfoModalInstance.hide(); await initializeCamera(); });
+    }
+
+    // Toggle inline glasses number containers when selects change
+    function toggleInlineGlasses(selectEl, containerId, inputId) {
+      const container = document.getElementById(containerId);
+      const input = document.getElementById(inputId);
+      if (!selectEl || !container) return;
+      if (selectEl.value === 'yes') {
+        container.style.display = '';
+        if (input) input.setAttribute('required', 'required');
+      } else {
+        container.style.display = 'none';
+        if (input) input.removeAttribute('required');
+      }
+    }
+
+    // Main inline form select
+    const inlineSelect = document.getElementById('inlineWearsGlasses');
+    if (inlineSelect) {
+      inlineSelect.addEventListener('change', function() {
+        toggleInlineGlasses(inlineSelect, 'inlineGlassesNumberContainer', 'inlineGlassesNumber');
+      });
+      // initialize on load
+      toggleInlineGlasses(inlineSelect, 'inlineGlassesNumberContainer', 'inlineGlassesNumber');
+    }
+
+    // Color test inline select
+    const inlineSelectColor = document.getElementById('inlineWearsGlassesColor');
+    if (inlineSelectColor) {
+      inlineSelectColor.addEventListener('change', function() {
+        toggleInlineGlasses(inlineSelectColor, 'inlineGlassesNumberColorContainer', 'inlineGlassesNumberColor');
+      });
+      toggleInlineGlasses(inlineSelectColor, 'inlineGlassesNumberColorContainer', 'inlineGlassesNumberColor');
+    }
+
+    // Quiz inline select
+    const inlineSelectQuiz = document.getElementById('inlineWearsGlassesQuiz');
+    if (inlineSelectQuiz) {
+      inlineSelectQuiz.addEventListener('change', function() {
+        toggleInlineGlasses(inlineSelectQuiz, 'inlineGlassesNumberQuizContainer', 'inlineGlassesNumberQuiz');
+      });
+      toggleInlineGlasses(inlineSelectQuiz, 'inlineGlassesNumberQuizContainer', 'inlineGlassesNumberQuiz');
+    }
+
+    // File upload functionality
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('fileInput');
+
+    uploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      uploadArea.classList.add('dragover');
+    });
+
+    uploadArea.addEventListener('dragleave', () => {
+      uploadArea.classList.remove('dragover');
+       });
+
+    uploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      uploadArea.classList.remove('dragover');
+      const files = e.dataTransfer.files;
+      if (files.length > 0) {
+        handleFileUpload(files[0]);
+      }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        handleFileUpload(e.target.files[0]);
+      }
+    });
+
+    function handleFileUpload(file) {
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          previewImage.src = e.target.result;
+          previewImage.style.display = 'block';
+          startAnalysis(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        showNotification('Please select a valid image file.', 'error');
+      }
+    }
+
+    // Test selection and management
+    let currentQuizQuestion = 1;
+    let quizAnswers = {};
+    let colorTestAnswers = {};
+
+    // When a test card is clicked we popup the patient info modal first
+    // The modal's Start Test button will continue to the selected test
+    let pendingSelectedTest = null;
+
+    function copyInlineToModalForTest(testKey) {
+      // copy any inline inputs into modal fields to reduce retyping
+      if (testKey === 'colorblind') {
+        const name = document.getElementById('inlinePatientNameColor')?.value;
+        const age = document.getElementById('inlinePatientAgeColor')?.value;
+        const wears = document.getElementById('inlineWearsGlassesColor')?.value;
+        const gnum = document.getElementById('inlineGlassesNumberColor')?.value;
+        if (name) document.getElementById('patientName').value = name;
+        if (age) document.getElementById('patientAge').value = age;
+        if (wears) {
+          if (wears === 'yes') document.getElementById('glassesYes').checked = true;
+          else document.getElementById('glassesNo').checked = true;
+        }
+        if (gnum) document.getElementById('glassesNumber').value = gnum;
+      } else if (testKey === 'quiz') {
+        const name = document.getElementById('inlinePatientNameQuiz')?.value;
+        const age = document.getElementById('inlinePatientAgeQuiz')?.value;
+        const wears = document.getElementById('inlineWearsGlassesQuiz')?.value;
+        const gnum = document.getElementById('inlineGlassesNumberQuiz')?.value;
+        if (name) document.getElementById('patientName').value = name;
+        if (age) document.getElementById('patientAge').value = age;
+        if (wears) {
+          if (wears === 'yes') document.getElementById('glassesYes').checked = true;
+          else document.getElementById('glassesNo').checked = true;
+        }
+        if (gnum) document.getElementById('glassesNumber').value = gnum;
+      } else {
+        // visual acuity (main) inline
+        const name = document.getElementById('inlinePatientName')?.value;
+        const age = document.getElementById('inlinePatientAge')?.value;
+        const wears = document.getElementById('inlineWearsGlasses')?.value;
+        const gnum = document.getElementById('inlineGlassesNumber')?.value;
+        if (name) document.getElementById('patientName').value = name;
+        if (age) document.getElementById('patientAge').value = age;
+        if (wears) {
+          if (wears === 'yes') document.getElementById('glassesYes').checked = true;
+          else document.getElementById('glassesNo').checked = true;
+        }
+        if (gnum) document.getElementById('glassesNumber').value = gnum;
+      }
+      // ensure toggle of modal glasses number container
+      toggleGlassesNumber();
+    }
+
+    document.querySelectorAll('.test-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.test-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        // set pending selection and show modal
+        pendingSelectedTest = card.dataset.test;
+        // copy any inline values into modal for convenience
+        copyInlineToModalForTest(pendingSelectedTest);
+
+        // Reset modal validation state and show
+        patientInfoForm.classList.remove('was-validated');
+        patientInfoModalInstance.show();
+      });
+    });
+
+    // Color Blindness Test Functions
+    function generateIshiharaPlates() {
+      // Generate simplified Ishihara-like plates
+      generatePlate1();
+      generatePlate2();
+      generatePlate3();
+    }
+
+    function generatePlate1() {
+      const svg = document.querySelector('#plate1 svg');
+      const bgDots = document.getElementById('bgDots1');
+      const numberDots = document.getElementById('numberDots1');
+      
+      // Clear existing dots
+      bgDots.innerHTML = '';
+      numberDots.innerHTML = '';
+      
+      // Generate background dots
+      for (let i = 0; i < 300; i++) {
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        const x = Math.random() * 180 + 10;
+        const y = Math.random() * 180 + 10;
+        const r = Math.random() * 4 + 2;
+        const distance = Math.sqrt((x - 100) * (x - 100) + (y - 100) * (y - 100));
+        
+        if (distance < 85) {
+          dot.setAttribute('cx', x);
+          dot.setAttribute('cy', y);
+          dot.setAttribute('r', r);
+          dot.setAttribute('fill', `hsl(${Math.random() * 60 + 60}, 70%, ${Math.random() * 30 + 40}%)`);
+          bgDots.appendChild(dot);
+        }
+      }
+      
+      // Generate number "12" in different color (red-green contrast)
+      generateNumber12(numberDots);
+    }
+
+    function generatePlate2() {
+      const bgDots = document.getElementById('bgDots2');
+      const numberDots = document.getElementById('numberDots2');
+      
+      bgDots.innerHTML = '';
+      numberDots.innerHTML = '';
+      
+      for (let i = 0; i < 300; i++) {
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        const x = Math.random() * 180 + 10;
+        const y = Math.random() * 180 + 10;
+        const r = Math.random() * 4 + 2;
+        const distance = Math.sqrt((x - 100) * (x - 100) + (y - 100) * (y - 100));
+        
+        if (distance < 85) {
+          dot.setAttribute('cx', x);
+          dot.setAttribute('cy', y);
+          dot.setAttribute('r', r);
+          dot.setAttribute('fill', `hsl(${Math.random() * 60 + 120}, 60%, ${Math.random() * 30 + 35}%)`);
+          bgDots.appendChild(dot);
+        }
+      }
+      
+      generateNumber8(numberDots);
+    }
+
+    function generatePlate3() {
+      const bgDots = document.getElementById('bgDots3');
+      const numberDots = document.getElementById('numberDots3');
+      
+      bgDots.innerHTML = '';
+      numberDots.innerHTML = '';
+      
+      for (let i = 0; i < 300; i++) {
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        const x = Math.random() * 180 + 10;
+        const y = Math.random() * 180 + 10;
+        const r = Math.random() * 4 + 2;
+        const distance = Math.sqrt((x - 100) * (x - 100) + (y - 100) * (y - 100));
+        
+        if (distance < 85) {
+          dot.setAttribute('cx', x);
+          dot.setAttribute('cy', y);
+          dot.setAttribute('r', r);
+          dot.setAttribute('fill', `hsl(${Math.random() * 40 + 30}, 65%, ${Math.random() * 25 + 45}%)`);
+          bgDots.appendChild(dot);
+        }
+      }
+      
+      generateNumber29(numberDots);
+    }
+
+    // Helper functions to generate numbers
+    function generateNumber12(container) {
+      // Simplified representation of "12"
+      const positions1 = [[70,40], [70,50], [70,60], [70,70], [70,80], [70,90], [65,90], [75,90]];
+      const positions2 = [[90,40], [100,40], [110,40], [120,40], [120,50], [110,60], [100,70], [90,80], [130,80], [120,90], [110,90], [100,90], [90,90]];
+      
+      [...positions1, ...positions2].forEach(([x, y]) => {
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('cx', x + Math.random() * 6 - 3);
+        dot.setAttribute('cy', y + Math.random() * 6 - 3);
+        dot.setAttribute('r', Math.random() * 2 + 3);
+        dot.setAttribute('fill', `hsl(${Math.random() * 30 + 340}, 80%, 45%)`);
+        container.appendChild(dot);
+      });
+    }
+
+    function generatePlate1() {
+      const svg = document.querySelector('#plate1 svg');
+      const bgDots = document.getElementById('bgDots1');
+      const numberDots = document.getElementById('numberDots1');
+      
+      // Clear existing dots
+      bgDots.innerHTML = '';
+      numberDots.innerHTML = '';
+      
+      // Generate background dots
+      for (let i = 0; i < 300; i++) {
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        const x = Math.random() * 180 + 10;
+        const y = Math.random() * 180 + 10;
+        const r = Math.random() * 4 + 2;
+        const distance = Math.sqrt((x - 100) * (x - 100) + (y - 100) * (y - 100));
+        
+        if (distance < 85) {
+          dot.setAttribute('cx', x);
+          dot.setAttribute('cy', y);
+          dot.setAttribute('r', r);
+          dot.setAttribute('fill', `hsl(${Math.random() * 60 + 60}, 70%, ${Math.random() * 30 + 40}%)`);
+          bgDots.appendChild(dot);
+        }
+      }
+      
+      // Generate number "12" in different color (red-green contrast)
+      generateNumber12(numberDots);
+    }
+
+    function generateNumber8(container) {
+      const positions = [
+        [90,45], [95,40], [100,40], [105,40], [110,45],
+        [85,50], [90,50], [110,50], [115,50],
+        [90,60], [95,60], [100,60], [105,60], [110,60],
+        [85,70], [90,70], [110,70], [115,70],
+        [90,85], [95,90], [100,90], [105,90], [110,85]
+      ];
+      
+      positions.forEach(([x, y]) => {
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('cx', x + Math.random() * 4 - 2);
+        dot.setAttribute('cy', y + Math.random() * 4 - 2);
+        dot.setAttribute('r', Math.random() * 2 + 2.5);
+        dot.setAttribute('fill', `hsl(${Math.random() * 30 + 10}, 75%, 40%)`);
+        container.appendChild(dot);
+      });
+    }
+
+    function generateNumber29(container) {
+      // "2" positions
+      const positions2 = [[70,40], [75,40], [80,40], [85,40], [85,50], [80,60], [75,70], [70,80], [70,90], [75,90], [80,90], [85,90]];
+      // "9" positions  
+      const positions9 = [[105,40], [110,40], [115,40], [120,40], [100,50], [120,50], [105,60], [110,60], [115,60], [120,60], [120,70], [115,80], [110,90], [105,90]];
+      
+      [...positions2, ...positions9].forEach(([x, y]) => {
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('cx', x + Math.random() * 5 - 2.5);
+        dot.setAttribute('cy', y + Math.random() * 5 - 2.5);
+        dot.setAttribute('r', Math.random() * 1.5 + 2.5);
+        dot.setAttribute('fill', `hsl(${Math.random() * 40 + 200}, 70%, 50%)`);
+        container.appendChild(dot);
+      });
+    }
+
+    // Color test answer handling
+    document.querySelectorAll('.color-answer').forEach(button => {
+      button.addEventListener('click', function() {
+        const plate = this.getAttribute('data-plate');
+        const answer = this.getAttribute('data-answer');
+        
+        // Remove selected class from siblings
+        this.parentElement.querySelectorAll('.color-answer').forEach(btn => {
+          btn.classList.remove('selected');
+        });
+        
+        // Add selected class to clicked button
+        this.classList.add('selected');
+        
+        // Store answer
+        colorTestAnswers[`plate${plate}`] = answer;
+      });
+    });
+
+    // Complete color test
+    document.getElementById('completeColorTest').addEventListener('click', function() {
+      if (Object.keys(colorTestAnswers).length < 3) {
+        showNotification('Please answer all color test questions before proceeding.', 'warning');
+        return;
+      }
+      
+      // Analyze color test results
+      analyzeColorBlindnessResults();
+    });
+
+    function analyzeColorBlindnessResults() {
+      let score = 0;
+      let colorBlindnessType = 'Normal Color Vision';
+      
+      // Check answers (simplified scoring)
+      if (colorTestAnswers.plate1 === '12') score++;
+      if (colorTestAnswers.plate2 === '8') score++;
+      if (colorTestAnswers.plate3 === '29') score++;
+      
+      if (score === 3) {
+        colorBlindnessType = 'Normal Color Vision';
+      } else if (score === 2) {
+        colorBlindnessType = 'Mild Color Vision Deficiency';
+      } else if (score === 1) {
+        colorBlindnessType = 'Moderate Color Vision Deficiency';
+      } else {
+        colorBlindnessType = 'Significant Color Vision Deficiency';
+      }
+      
+      // Store results and redirect
+      const testResults = {
+        testType: 'Color Blindness Test',
+        score: score,
+        totalQuestions: 3,
+        colorVisionType: colorBlindnessType,
+        recommendations: getColorBlindnessRecommendations(score),
+        analyzedAt: new Date().toISOString(),
+        patientInfo: patientData
+      };
+      
+      localStorage.setItem('eyeTestResults', JSON.stringify(testResults));
+      window.location.href = 'test-result.html';
+    }
+
+    function getColorBlindnessRecommendations(score) {
+      if (score === 3) {
+        return [
+          'Your color vision appears normal.',
+          'Continue regular eye checkups.',
+          'Protect your eyes from UV radiation.',
+          'Maintain a healthy diet rich in vitamins A, C, and E.'
+        ];
+      } else if (score === 2) {
+        return [
+          'You may have mild color vision differences.',
+          'Consider a comprehensive eye exam with an optometrist.',
+          'Use high-contrast settings on digital devices.',
+          'Be aware of color-coding in work and daily activities.'
+        ];
+      } else {
+        return [
+          'You may have color vision deficiency.',
+          'Consult an eye care professional for detailed testing.',
+          'Consider assistive technologies for color identification.',
+          'Inform employers or schools about color vision needs.',
+          'Use apps that can help identify colors.'
+        ];
+      }
+    }
+
+    // Eye Health Quiz Functions
+    function initializeQuiz() {
+      currentQuizQuestion = 1;
+      quizAnswers = {};
+      
+      // Hide all questions except first
+      document.querySelectorAll('.quiz-question').forEach((q, index) => {
+        if (index === 0) {
+          q.style.display = 'block';
+          q.classList.add('active');
+        } else {
+          q.style.display = 'none';
+          q.classList.remove('active');
+        }
+      });
+      
+      document.getElementById('nextQuizQuestion').style.display = 'none';
+      document.getElementById('completeQuiz').style.display = 'none';
+      
+      // Add progress bar
+      if (!document.querySelector('.quiz-progress')) {
+        const progressBar = document.createElement('div');
+        progressBar.className = 'quiz-progress';
+        progressBar.innerHTML = '<div class="quiz-progress-fill" style="width: 20%"></div>';
+        document.querySelector('#eyeHealthQuiz .eye-test-container').insertBefore(progressBar, document.getElementById('quizQuestions'));
+      }
+    }
+
+    // Quiz answer handling
+    document.addEventListener('change', function(e) {
+      if (e.target.name && e.target.name.startsWith('q')) {
+        const questionNum = e.target.name.replace('q', '');
+        quizAnswers[questionNum] = e.target.value;
+        
+        // Show next button or complete button
+        if (currentQuizQuestion < 5) {
+          document.getElementById('nextQuizQuestion' ).style.display = 'inline-block';
+        } else {
+          document.getElementById('completeQuiz').style.display = 'inline-block';
+        }
+      }
+    });
+
+    // Next question handler
+    document.getElementById('nextQuizQuestion').addEventListener('click', function() {
+      if (!quizAnswers[currentQuizQuestion]) {
+        showNotification('Please select an answer before proceeding.', 'warning');
+        return;
+      }
+      
+      // Hide current question
+      document.querySelector(`[data-question="${currentQuizQuestion}"]`).style.display = 'none';
+      
+      // Show next question
+      currentQuizQuestion++;
+      const nextQuestion = document.querySelector(`[data-question="${currentQuizQuestion}"]`);
+      if (nextQuestion) {
+        nextQuestion.style.display = 'block';
+        setTimeout(() => nextQuestion.classList.add('active'), 100);
+        
+        // Update progress
+        const progress = (currentQuizQuestion / 5) * 100;
+        document.querySelector('.quiz-progress-fill').style.width = progress + '%';
+        
+        // Hide next button until answer is selected
+        this.style.display = 'none';
+        
+        // Show complete button on last question
+        if (currentQuizQuestion === 5) {
+          document.getElementById('completeQuiz').style.display = 'inline-block';
+        }
+      }
+    });
+
+    // Complete quiz handler
+    document.getElementById('completeQuiz').addEventListener('click', function() {
+      if (!quizAnswers[currentQuizQuestion]) {
+        showNotification('Please answer the current question before completing the quiz.', 'warning');
+        return;
+      }
+      
+      if (Object.keys(quizAnswers).length < 5) {
+        showNotification('Please answer all questions before completing the quiz.', 'warning');
+        return;
+      }
+      
+      analyzeQuizResults();
+    });
+
+    function analyzeQuizResults() {
+      let score = 0;
+      const correctAnswers = {
+        '1': 'two-years',
+        '2': 'correct', 
+        '3': 'correct',
+        '4': 'correct',
+        '5': 'correct'
+      };
+      
+      // Calculate score
+      Object.keys(correctAnswers).forEach(questionNum => {
+        if (quizAnswers[questionNum] === correctAnswers[questionNum]) {
+          score++;
+        }
+      });
+      
+      const percentage = (score / 5) * 100;
+      let knowledgeLevel = '';
+      let recommendations = [];
+      
+      if (percentage >= 80) {
+        knowledgeLevel = 'Excellent Eye Health Knowledge';
+        recommendations = [
+          'You have excellent knowledge about eye health!',
+          'Keep up the great habits for maintaining eye health.',
+          'Continue regular eye checkups as recommended.',
+          'Share your knowledge with family and friends.'
+        ];
+      } else if (percentage >= 60) {
+        knowledgeLevel = 'Good Eye Health Knowledge';
+        recommendations = [
+          'You have good basic knowledge about eye health.',
+          'Consider learning more about eye nutrition and protection.',
+          'Implement the 20-20-20 rule for screen time.',
+          'Schedule regular comprehensive eye exams.'
+        ];
+      } else if (percentage >= 40) {
+        knowledgeLevel = 'Fair Eye Health Knowledge';
+        recommendations = [
+          'You have some knowledge but could benefit from learning more.',
+          'Read about proper eye care and protection methods.',
+          'Consult with an eye care professional about best practices.',
+          'Consider making lifestyle changes to protect your vision.'
+        ];
+      } else {
+        knowledgeLevel = 'Limited Eye Health Knowledge';
+        recommendations = [
+          'Consider educating yourself more about eye health.',
+          'Schedule a comprehensive eye exam soon.',
+          'Learn about proper nutrition for eye health.',
+          'Implement basic eye protection habits immediately.',
+          'Consult with an eye care professional for personalized advice.'
+        ];
+      }
+      
+      // Store results and redirect
+      const testResults = {
+        testType: 'Eye Health Knowledge Quiz',
+        score: score,
+        totalQuestions: 5,
+        percentage: percentage,
+        knowledgeLevel: knowledgeLevel,
+        recommendations: recommendations,
+        answers: quizAnswers,
+        analyzedAt: new Date().toISOString(),
+        patientInfo: patientData
+      };
+      
+      localStorage.setItem('eyeTestResults', JSON.stringify(testResults));
+      window.location.href = 'test-result.html';
+    }
+
+    // Analysis simulation
+    async function startAnalysis(imageData) {
+      document.getElementById('testProgress').style.display = 'block';
+      document.getElementById('analysisStatus').className = 'status-indicator status-warning';
+      document.getElementById('analysisText').textContent = 'Analyzing image...';
+      document.getElementById('resultStatus').className = 'status-indicator';
+      document.getElementById('resultText').textContent = 'Processing...';
+      document.getElementById('progressFill').style.width = '30%';
+
+      // Fake result logic
+      setTimeout(function() {
+        document.getElementById('progressFill').style.width = '100%';
+        document.getElementById('analysisStatus').className = 'status-indicator status-good';
+        document.getElementById('analysisText').textContent = 'Analysis complete';
+        document.getElementById('resultStatus').className = 'status-indicator status-good';
+        document.getElementById('resultText').textContent = 'Results ready';
+
+        // Use cycling fake results to demo different outcomes each run
+        const fakeResults = [
+          {
+            leftEye: '20/20',
+            rightEye: '20/20',
+            overall: 'Excellent',
+            recommendations: ['Your vision appears excellent based on this quick check.', 'Maintain regular eye protection.', 'Schedule routine checkups.']
+          },
+          {
+            leftEye: '20/25',
+            rightEye: '20/30',
+            overall: 'Good',
+            recommendations: ['Minor deviations detected; monitor your vision routinely.', 'Reduce screen glare and follow 20-20-20 rule.']
+          },
+          {
+            leftEye: '20/40',
+            rightEye: '20/30',
+            overall: 'Needs Attention',
+            recommendations: ['Significant deviation detected; please schedule a comprehensive eye exam.', 'Consider protective eyewear and reduce screen time.']
+          },
+          {
+            leftEye: '20/60',
+            rightEye: '20/50',
+            overall: 'Severe',
+            recommendations: ['Severe visual impairment detected; book an urgent clinical eye exam.', 'Avoid driving and heavy machinery until assessed.']
+          },
+          {
+            leftEye: '20/200',
+            rightEye: '20/160',
+            overall: 'Critical',
+            recommendations: ['Critical vision levels detected; immediate professional intervention required.', 'Contact an eye care provider or emergency services.']
+          }
+        ];
+
+        // Read index from localStorage so results cycle between runs
+        let idx = parseInt(localStorage.getItem('fake_result_index') || '0', 10);
+        if (isNaN(idx) || idx < 0) idx = 0;
+        const chosen = fakeResults[idx % fakeResults.length];
+
+        // increment and persist index for next run
+        localStorage.setItem('fake_result_index', String((idx + 1) % fakeResults.length));
+
+        // Build testResults using chosen fake result
+        testResults = { 
+          leftEye: chosen.leftEye,
+          rightEye: chosen.rightEye,
+          overall: chosen.overall,
+          recommendations: chosen.recommendations,
+          selectedTest, 
+          analyzedAt: new Date().toISOString(), 
+          previewImage: imageData || null,
+          patientInfo: {
+            name: patientData.name,
+            age: patientData.age,
+            previousResults: patientData.previousResults,
+            wearsGlasses: patientData.wearsGlasses,
+            glassesNumber: patientData.glassesNumber,
+            timestamp: patientData.timestamp
+          }
+        };
+
+        localStorage.setItem('eyeTestResults', JSON.stringify(testResults));
+        // navigate to results page
+        window.location.href = 'test-result.html';
+  }, 1500);
+    }
+
+    function generateResults() {
+      // Simulate test results
+      testResults = {
+        leftEye: '20/20',
+        rightEye: '20/25',
+        overall: 'Good',
+        recommendations: [
+          'Your vision is generally good',
+          'Consider regular eye checkups',
+          'Protect your eyes from digital strain'
+        ]
+      };
+
+      // Update UI
+      document.getElementById('leftEyeResult').textContent = testResults.leftEye;
+      document.getElementById('rightEyeResult').textContent = testResults.rightEye;
+      document.getElementById('overallResult').textContent = testResults.overall;
+      document.getElementById('recommendation1').textContent = testResults.recommendations[0];
+      document.getElementById('recommendation2').textContent = testResults.recommendations[1];
+      document.getElementById('recommendation3').textContent = testResults.recommendations[2];
+
+      document.getElementById('resultsSection').style.display = 'block';
+      showNotification('Eye test completed! View your results below.', 'success');
+    }
+
+    // Save and share functionality
+    document.getElementById('saveResults').addEventListener('click', () => {
+      const resultsText = `Eye Test Results\n\nLeft Eye: ${testResults.leftEye}\nRight Eye: ${testResults.rightEye}\nOverall: ${testResults.overall}\n\nRecommendations:\n${testResults.recommendations.join('\n')}`;
+      
+      const blob = new Blob([resultsText], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'eye-test-results.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+      
+      showNotification('Results saved successfully!', 'success');
+    });
+
+    document.getElementById('shareResults').addEventListener('click', async () => {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Eye Test Results',
+          text: `My eye test results: Left Eye ${testResults.leftEye}, Right Eye ${testResults.rightEye}, Overall ${testResults.overall}`,
+          url: window.location.href
+        });
+      } else {
+        const shareText = `Eye Test Results\nLeft Eye: ${testResults.leftEye}\nRight Eye: ${testResults.rightEye}\nOverall: ${testResults.overall}`;
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(shareText);
+          } else {
+            const textArea = document.createElement('textarea');
+            textArea.value = shareText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+          }
+          showNotification('Results copied to clipboard!', 'success');
+        } catch (err) {
+          showNotification('Unable to copy results automatically.', 'warning');
+        }
+      }
+    });
+
+    // Notification function
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.className = `alert alert-${type === 'error' ? 'danger' : type} alert-dismissible fade show position-fixed`;
+      notification.style.cssText = 'top: 100px; right: 20px; z-index: 9999; min-width: 300px;';
+      notification.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      `;
+      document.body.appendChild(notification);
+      
+      // Auto-remove notification after 5 seconds
+      setTimeout(() => {
+        if (notification && notification.parentNode) {
+          notification.remove();
+        }
+      }, 5000);
+    }
+
+    // Store patient data when form is submitted
+    let patientData = {
+      name: '',
+      age: '',
+      previousResults: '',
+      wearsGlasses: false,
+      glassesNumber: null,
+      timestamp: ''
+    };// Update patient data when form is submitted
+    function updatePatientData() {
+      const name = document.getElementById('patientName').value;
+      const age = document.getElementById('patientAge').value;
+      const previousResults = document.getElementById('previousResults').value;
+      const wearsGlasses = document.querySelector('input[name="wearsGlasses"]:checked')?.value === 'yes';
+      const glassesNumber = document.getElementById('glassesNumber').value || null;
+
+      patientData = {
+        name: name,
+        age: age,
+        previousResults: previousResults,
+        wearsGlasses: wearsGlasses,
+        glassesNumber: wearsGlasses ? glassesNumber : null,
+        timestamp: new Date().toISOString()
+      };
+
+      console.log('Patient data updated:', patientData);
+      return patientData;
+    }
+
+    patientInfoForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      updatePatientData();
+
+      // Show tutorial modal after form submission
+      const tutorialModal = new bootstrap.Modal(document.getElementById('tutorialModal'));
+      tutorialModal.show();
+      initializeTutorial();
+    });
+
+    // Tutorial functionality
+    let currentTutorialStep = 1;
+    const totalTutorialSteps = 6;
+
+    function initializeTutorial() {
+      currentTutorialStep = 1;
+      showTutorialStep(1);
+      updateTutorialProgress();
+      updateTutorialNavigation();
+    }
+
+    function showTutorialStep(stepNumber) {
+      // Hide all steps
+      document.querySelectorAll('.tutorial-step').forEach(step => {
+        step.style.display = 'none';
+      });
+      
+      // Show current step
+      const currentStep = document.getElementById(`step${stepNumber}`);
+      if (currentStep) {
+        currentStep.style.display = 'block';
+      }
+      
+      // Update step indicator
+      document.getElementById('tutorialStep').textContent = stepNumber;
+    }
+
+    function updateTutorialProgress() {
+      const progress = (currentTutorialStep / totalTutorialSteps) * 100;
+      document.getElementById('tutorialProgressFill').style.width = progress + '%';
+    }
+
+    function updateTutorialNavigation() {
+      const prevBtn = document.getElementById('prevTutorialStep');
+      const nextBtn = document.getElementById('nextTutorialStep');
+      const startBtn = document.getElementById('startTestFromTutorial');
+      
+      // Show/hide previous button
+      prevBtn.style.display = currentTutorialStep > 1 ? 'inline-block' : 'none';
+      
+      // Show next or start button
+      if (currentTutorialStep < totalTutorialSteps) {
+        nextBtn.style.display = 'inline-block';
+        startBtn.style.display = 'none';
+      } else {
+        nextBtn.style.display = 'none';
+        startBtn.style.display = 'inline-block';
+      }
+    }
+
+    // Tutorial navigation event listeners
+    document.getElementById('nextTutorialStep').addEventListener('click', function() {
+      if (currentTutorialStep < totalTutorialSteps) {
+        currentTutorialStep++;
+        showTutorialStep(currentTutorialStep);
+        updateTutorialProgress();
+        updateTutorialNavigation();
+      }
+    });
+
+    document.getElementById('prevTutorialStep').addEventListener('click', function() {
+      if (currentTutorialStep > 1) {
+        currentTutorialStep--;
+        showTutorialStep(currentTutorialStep);
+        updateTutorialProgress();
+        updateTutorialNavigation();
+      }
+    });
+
+    // Show patient info modal on page load if it's the first visit
+    if (!localStorage.getItem('eyeTestInstructionsShown')) {
+      setTimeout(() => {
+        patientInfoModalInstance.show();
+        localStorage.setItem('eyeTestInstructionsShown', 'true');
+      }, 1000);
+    }
+</script>
+
+</html>
